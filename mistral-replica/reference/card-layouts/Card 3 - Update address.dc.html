@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f2efe9; font-family:Inter, system-ui, sans-serif; color:#242320; -webkit-font-smoothing:antialiased; }
+  a { color:#3f8ecc; text-decoration:none; }
+  a:hover { color:#2f7cc4; text-decoration:underline; }
+</style>
+</helmet>
+
+<section style="display:flex; flex-direction:column; gap:24px; padding:48px 44px 80px;">
+  <div style="display:flex; flex-direction:column; gap:8px; max-width:820px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:#6f685d; font-weight:600;">Type 3</span>
+      <span style="font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:#6f685d; font-weight:500;">Update address + additional details</span>
+    </div>
+    <h1 style="margin:0; font-size:26px; line-height:34px; font-weight:600; letter-spacing:-.4px;">Same card, but the address gets full width</h1>
+    <p style="margin:0; font-size:13px; line-height:21px; color:#77716a; text-wrap:pretty;">Bellhaven of Ashtabula — the one real type 3. Address is one row with the whole address on each side of the arrow, not four field rows, so a reviewer sees what moved and what stayed. The match line carries the warning instead of a reassurance: this class is matched on name and parent while the address disagrees, so the reason sits in the drawer. Collapsed above, open below.</p>
+  </div>
+
+  <div id="1a" style="display:flex; flex-direction:column; gap:12px; max-width:1000px;">
+    <sc-for list="{{ cards }}" as="c" hint-placeholder-count="2">
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:baseline; gap:10px;">
+          <span style="font-size:11px; font-weight:600; background:#242320; color:#fff; border-radius:5px; padding:3px 7px;">{{ c.badge }}</span>
+          <span style="font-size:13px; color:#8a857b;">{{ c.caption }}</span>
+        </div>
+        <article style="background:#fff; border:1px solid {{ c.border }}; border-radius:9px; overflow:hidden;">
+          <div onClick="{{ c.onToggle }}" style="padding:15px 17px 13px; cursor:pointer; display:flex; flex-direction:column; gap:12px;" style-hover="background:#fdfcfa;">
+            <div style="display:flex; align-items:flex-start; gap:16px;">
+              <div style="display:flex; flex-direction:column; gap:3px; min-width:0; flex:1;">
+                <span style="font-size:15px; line-height:22px; font-weight:600; color:#3f8ecc; letter-spacing:-.1px;">{{ c.title }}</span>
+                <span style="font-size:12px; line-height:18px; color:#6f685d;">{{ c.subline }}</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
+                <button type="button" onClick="{{ c.onApprove }}" style="border:1px solid {{ c.approveBorder }}; background:{{ c.approveBg }}; color:#3b382f; border-radius:5px; padding:4px 10px; font:inherit; font-size:12px; line-height:16px; font-weight:500; cursor:pointer;" style-hover="background:#f5f3ee;">{{ c.approveLabel }}</button>
+                <button type="button" onClick="{{ c.onDecline }}" style="border:1px solid {{ c.declineBorder }}; background:{{ c.declineBg }}; color:#6f685d; border-radius:5px; padding:4px 10px; font:inherit; font-size:12px; line-height:16px; cursor:pointer;" style-hover="background:#f5f3ee; color:#3b382f;">{{ c.declineLabel }}</button>
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <sc-for list="{{ c.changes }}" as="f" hint-placeholder-count="2">
+                <div style="display:grid; grid-template-columns:118px minmax(0,1fr) 16px minmax(0,1fr); gap:10px; align-items:baseline; font-size:13px; line-height:21px;">
+                  <span style="color:#6f685d; font-size:12px;">{{ f.label }}</span>
+                  <span style="color:#6f685d;">{{ f.from }}</span>
+                  <span style="color:#a39b8e;">→</span>
+                  <span style="font-weight:500;">{{ f.to }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{ c.closed }}" hint-placeholder-val="{{ true }}">
+            <div onClick="{{ c.onToggle }}" style="padding:0 17px 14px; cursor:pointer; font-size:12px; line-height:18px; color:#6f685d;">
+              <span>{{ c.matchLine }}</span>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ c.open }}">
+            <div style="background:#fdfcf9; border-top:1px solid #eeebe4; padding:16px 17px 17px; display:flex; flex-direction:column; gap:16px;">
+              <sc-for list="{{ c.changes }}" as="f" hint-placeholder-count="2">
+                <div style="display:flex; flex-direction:column; gap:5px;">
+                  <span style="font-size:12px; line-height:18px; font-weight:600;">{{ f.label }}</span>
+                  <div style="display:grid; grid-template-columns:118px minmax(0,1fr); gap:4px 10px; align-items:baseline; font-size:13px; line-height:21px;">
+                    <span style="color:#6f685d; font-size:12px;">Website</span>
+                    <span>{{ f.website }} <a href="{{ f.sourceUrl }}" target="_blank" style="font-size:12px;">source</a></span>
+                    <span style="color:#6f685d; font-size:12px;">CRM today</span>
+                    <span>{{ f.from }} <a href="#1a" style="font-size:12px;">record</a></span>
+                    <span style="color:#6f685d; font-size:12px;">Write</span>
+                    <span style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                      <input value="{{ f.to }}" onChange="{{ f.onEdit }}" style="border:1px solid #ded9cf; border-radius:6px; background:#fff; padding:4px 8px; font:inherit; font-size:13px; line-height:20px; color:#242320; width:300px; max-width:100%; box-sizing:border-box;">
+                      <span style="font-size:12px; color:#6f685d;">{{ f.editHint }}</span>
+                    </span>
+                  </div>
+                </div>
+              </sc-for>
+
+              <div style="border-top:1px solid #eeebe4; padding-top:13px; display:grid; grid-template-columns:118px minmax(0,1fr); gap:4px 10px; align-items:baseline; font-size:13px; line-height:21px;">
+                <span style="color:#6f685d; font-size:12px;">Match</span>
+                <span style="color:#57534a;">{{ c.matchLine }}</span>
+                <span style="color:#6f685d; font-size:12px;">Reason</span>
+                <span style="color:#57534a;">{{ c.reason }}</span>
+              </div>
+            </div>
+          </sc-if>
+        </article>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1100,&quot;height&quot;:700}}">
+class Component extends DCLogic {
+  state = { open: 'ashtabula-open', edits: {}, decisions: {} };
+
+  decide(id, choice, e) {
+    e.stopPropagation();
+    this.setState(s => ({ decisions: { ...s.decisions, [id]: s.decisions[id] === choice ? null : choice } }));
+  }
+
+  data() {
+    const base = {
+      name: 'Bellhaven of Ashtabula',
+      account: '001NXP9X46CWEPSLSV',
+      subline: 'Ashtabula, OH 44004 · Bellhaven Senior Living',
+      sourceUrl: 'https://analyst-assessment-production.up.railway.app/communities/bellhaven-of-ashtabula',
+      matchLine: 'Address correction - Name and parent match, no CRM address matches',
+      reason: 'Matching name and parent suggest the same facility with a move or an outdated CRM address. The website supplies its current listed address.',
+      unchangedLine: '6 other fields identical',
+      changes: [
+        { key: 'street', label: 'Address', from: 'PO Box 517, Ashtabula, OH 44004', to: '3156 W Prospect Rd, Ashtabula, OH 44004', website: '3156 W Prospect Rd, Ashtabula, OH 44004' },
+        { key: 'care_type', label: 'Care offerings', from: 'Skilled Nursing', to: 'Short-Term Rehabilitation & Nursing', website: 'Short-Term Rehabilitation & Nursing' }
+      ]
+    };
+    return [
+      { ...base, id: 'ashtabula-closed', badge: '1a', caption: 'Collapsed' },
+      { ...base, id: 'ashtabula-open', badge: '1b', caption: 'Open' }
+    ];
+  }
+
+  renderVals() {
+    const { open, edits, decisions } = this.state;
+    const cards = this.data().map(c => {
+      const isOpen = open === c.id;
+      const changes = c.changes.map(f => {
+        const edited = edits[c.id + ':' + f.key];
+        const to = edited != null ? edited : f.to;
+        return {
+          ...f, to,
+          sourceUrl: c.sourceUrl,
+          editHint: edited != null && edited !== f.website ? 'Edited by you' : 'From website',
+          onEdit: e => this.setState(s => ({ edits: { ...s.edits, [c.id + ':' + f.key]: e.target.value } }))
+        };
+      });
+      const decision = decisions[c.id] || null;
+      return {
+        ...c, changes,
+        title: 'Update Information on ' + c.name,
+        open: isOpen,
+        closed: !isOpen,
+        border: isOpen ? '#d8d3c8' : '#e4e1da',
+        approveLabel: decision === 'approve' ? 'Approved' : 'Approve',
+        declineLabel: decision === 'decline' ? 'Declined' : 'Decline',
+        approveBg: decision === 'approve' ? '#eceee7' : 'transparent',
+        declineBg: decision === 'decline' ? '#eceee7' : 'transparent',
+        approveBorder: decision === 'approve' ? '#b9b3a6' : '#dedbd4',
+        declineBorder: decision === 'decline' ? '#b9b3a6' : '#e7e4dd',
+        onApprove: e => this.decide(c.id, 'approve', e),
+        onDecline: e => this.decide(c.id, 'decline', e),
+        onToggle: () => this.setState({ open: isOpen ? null : c.id })
+      };
+    });
+    return { cards };
+  }
+}
+
+</script>
+</body>
+</html>

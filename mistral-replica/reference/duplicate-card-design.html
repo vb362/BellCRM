@@ -1,0 +1,125 @@
+<!-- Supplied standalone card reference; UI adapted in review.js/review.css. -->
+<x-dc>
+
+<div style="padding:40px 32px 56px; display:flex; justify-content:center;">
+<div style="width:100%; max-width:1040px; background:#fff; border:1px solid #e4e1da; border-radius:9px; overflow:hidden;">
+<div sc-camel-on-click="{{ toggle }}" style="padding:16px 16px 18px; display:grid; grid-template-columns:minmax(0,1fr) 96px; gap:16px; align-items:start; cursor:pointer;">
+<div style="display:flex; flex-direction:column; gap:14px; min-width:0;">
+<div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+<span style="font-size:15px; line-height:22px; font-weight:600; color:#3f8ecc; letter-spacing:-.1px;">Merge duplicate CRM records for “Ridgemont Manor”</span>
+<label sc-camel-on-click="{{ stop }}" style="display:flex; align-items:center; gap:7px; font-size:12px; color:#928b80; cursor:default;">Survivor
+            <sc-raw-select sc-camel-on-change="{{ onPick }}" style="border:1px solid #dedbd4; border-radius:6px; background:#fff; padding:4px 7px; font:inherit; font-size:12px; color:#242320; cursor:pointer;" value="{{ pick }}">
+<option value="">Choose…</option>
+<option value="ACC-51120">ACC-51120</option>
+<option value="ACC-51877">ACC-51877</option>
+<option value="both">Keep both — not duplicates</option>
+</sc-raw-select>
+</label>
+</div>
+<div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px;">
+<sc-for as="d" hint-placeholder-count="2" list="{{ rows }}">
+<div style="border:1px solid {{ d.border }}; border-radius:8px; padding:11px 13px; display:flex; flex-direction:column; gap:4px; opacity:{{ d.dim }}; min-width:0;">
+<span style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+<span style="font-size:12px; line-height:18px; font-weight:500;">{{ d.id }}</span>
+<span style="font-size:10px; letter-spacing:.04em; text-transform:uppercase; color:{{ d.tagColor }};">{{ d.tag }}</span>
+</span>
+<span style="font-size:12px; line-height:18px; font-weight:500;">{{ d.name }}</span>
+<span style="font-size:12px; line-height:18px; color:#928b80;">{{ d.address }}</span>
+<span style="font-size:12px; line-height:18px; color:#928b80;">Parent: {{ d.parent }}</span>
+<span style="font-size:12px; line-height:18px; color:#928b80;">{{ d.created }} · {{ d.activity }}</span>
+<span style="font-size:12px; line-height:18px; color:#928b80;">{{ d.stats }}</span>
+</div>
+</sc-for>
+</div>
+<label sc-camel-on-click="{{ stop }}" style="display:flex; flex-direction:column; gap:5px; cursor:default;">
+<span style="font-size:10px; letter-spacing:.055em; text-transform:uppercase; color:#928b80; font-weight:500;">Note</span>
+<input placeholder="Why this record survives — saved with the decision" style="border:1px solid #ded9cf; border-radius:6px; background:#fff; padding:7px 10px; font:inherit; font-size:12px; line-height:18px; color:#28251f; width:100%; box-sizing:border-box;"/>
+</label>
+</div>
+<div sc-camel-on-click="{{ stop }}" style="display:flex; flex-direction:column; gap:6px; align-items:stretch;">
+<button style="border:1px solid #dedbd4; background:transparent; color:#3b382f; border-radius:5px; padding:4px 9px; font:inherit; font-size:12px; line-height:16px; font-weight:500; cursor:pointer; opacity:{{ approveOpacity }};" style-hover="background:#f5f3ee;" type="button">Approve</button>
+<button style="border:1px solid #e7e4dd; background:transparent; color:#6f685d; border-radius:5px; padding:4px 9px; font:inherit; font-size:12px; line-height:16px; cursor:pointer;" style-hover="background:#f5f3ee; color:#3b382f;" type="button">Decline</button>
+</div>
+</div>
+<sc-if hint-placeholder-val="{{ true }}" value="{{ open }}">
+<div style="background:#fdfcf9; border-top:1px solid #eeebe4; padding:20px 22px 22px; display:flex; flex-direction:column; gap:14px;">
+<div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+<span style="font-size:10px; letter-spacing:.055em; text-transform:uppercase; color:#928b80; font-weight:500;">Field comparison</span>
+<span style="font-size:12px; color:#8a857b;">{{ outcomeLine }}</span>
+</div>
+<div style="border:1px solid #e6e2d9; border-radius:7px; background:#fff; overflow:hidden;">
+<div style="display:grid; grid-template-columns:0.85fr 1.15fr 1.15fr; background:#f6f4ef; border-bottom:1px solid #e6e2d9; font-size:12px; font-weight:500; color:#5c574e;">
+<span style="padding:9px 11px;">CRM field</span>
+<span style="padding:9px 11px;">ACC-51120 <a href="#" style="font-weight:400;">(view)</a></span>
+<span style="padding:9px 11px;">ACC-51877 <a href="#" style="font-weight:400;">(view)</a></span>
+</div>
+<sc-for as="row" hint-placeholder-count="9" list="{{ compare }}">
+<div style="display:grid; grid-template-columns:0.85fr 1.15fr 1.15fr; border-bottom:1px solid #f0ede7; font-size:12px; line-height:18px; background:{{ row.bg }};">
+<span style="padding:9px 11px; color:#80796d;">{{ row.label }}</span>
+<span style="padding:9px 11px; overflow-wrap:anywhere; opacity:{{ row.dimA }};">{{ row.a }}</span>
+<span style="padding:9px 11px; overflow-wrap:anywhere; opacity:{{ row.dimB }};">{{ row.b }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script data-dc-script="" data-props='{"$preview":{"width":1100,"height":620}}' type="text/x-dc">
+class Component extends DCLogic {
+  state = { pick: '', open: false };
+
+  renderVals() {
+    const pick = this.state.pick;
+    const data = [
+      { id: 'ACC-51120', name: 'Ridgemont Manor', address: '310 Harbor Way, Mobile, AL 36602', parent: 'Bellhaven', created: 'Created Mar 2019', activity: 'active 12 days ago', stats: 'Lifetime revenue $96,200 · AR $0' },
+      { id: 'ACC-51877', name: 'Ridgemont Manor', address: '310 Harbor Way, Mobile, AL 36602', parent: 'Bellhaven', created: 'Created Aug 2024', activity: 'active 7 months ago', stats: 'Lifetime revenue $4,100 · AR $0' }
+    ];
+    const both = pick === 'both';
+    const rows = data.map(d => {
+      const keep = pick === d.id || both;
+      const drop = pick && !both && pick !== d.id;
+      return {
+        ...d,
+        dim: drop ? '0.55' : '1',
+        border: keep && !both ? '#242320' : '#e6e2d9',
+        tag: both ? 'Kept' : keep ? 'Survivor' : drop ? 'Closed as duplicate' : '',
+        tagColor: keep && !both ? '#39634a' : '#928b80'
+      };
+    });
+    const fields = [
+      ['Facility name', 'Ridgemont Manor', 'Ridgemont Manor'],
+      ['Address', '310 Harbor Way, Mobile, AL 36602', '310 Harbor Way, Mobile, AL 36602'],
+      ['Parent', 'Bellhaven', 'Bellhaven'],
+      ['Care offerings', 'Assisted living, memory care', 'Assisted living, memory care'],
+      ['Status', 'Active', 'Active'],
+      ['Lifetime revenue', '$96,200', '$4,100'],
+      ['Outstanding AR', '$0', '$0'],
+      ['Created', 'Mar 2019', 'Aug 2024'],
+      ['Last activity', '12 days ago', '7 months ago']
+    ];
+    const keepA = pick === 'ACC-51120', keepB = pick === 'ACC-51877';
+    const loser = keepA ? 'ACC-51877' : 'ACC-51120';
+    return {
+      pick,
+      open: this.state.open,
+      rows,
+      approveOpacity: pick ? '1' : '0.45',
+      outcomeLine: both ? 'Both records kept — flagged as reviewed, no merge'
+        : pick ? 'Keeping ' + pick + ' · closing ' + loser
+        : 'Pick a survivor to see the outcome',
+      compare: fields.map(([label, a, b]) => ({
+        label, a, b,
+        dimA: keepB ? '0.5' : '1',
+        dimB: keepA ? '0.5' : '1',
+        bg: a === b ? '#fff' : '#fbf7f1'
+      })),
+      toggle: () => this.setState(s => ({ open: !s.open })),
+      stop: e => e.stopPropagation(),
+      onPick: e => this.setState({ pick: e.target.value })
+    };
+  }
+}
+
+</script>

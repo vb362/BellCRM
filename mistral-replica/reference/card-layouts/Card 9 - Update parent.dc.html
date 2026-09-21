@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f2efe9; font-family:Inter, system-ui, sans-serif; color:#242320; -webkit-font-smoothing:antialiased; }
+  a { color:#3f8ecc; text-decoration:none; }
+  a:hover { color:#2f7cc4; text-decoration:underline; }
+</style>
+</helmet>
+
+<section style="display:flex; flex-direction:column; gap:24px; padding:48px 44px 80px;">
+  <div style="display:flex; flex-direction:column; gap:8px; max-width:820px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:#6f685d; font-weight:600;">Type 9</span>
+      <span style="font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:#6f685d; font-weight:500;">Update parent + additional details</span>
+    </div>
+    <h1 style="margin:0; font-size:26px; line-height:34px; font-weight:600; letter-spacing:-.4px;">A parent move has to show the CHOW check</h1>
+    <p style="margin:0; font-size:13px; line-height:21px; color:#77716a; text-wrap:pretty;">Every parent move is only legal after the billing test: re-parent in place unless the account has revenue history <em>and</em> open AR, in which case it must be preserved and a new account created instead. That test is a decision the reviewer is accountable for, so both numbers and the verdict are stated on the card rather than buried in the rationale. Findlay and Lima both pass with AR at zero. Findlay is open.</p>
+  </div>
+
+  <div id="1a" style="display:flex; flex-direction:column; gap:10px; max-width:1000px;">
+    <sc-for list="{{ cards }}" as="c" hint-placeholder-count="2">
+      <article style="background:#fff; border:1px solid {{ c.border }}; border-radius:9px; overflow:hidden;">
+        <div onClick="{{ c.onToggle }}" style="padding:15px 17px 13px; cursor:pointer; display:flex; flex-direction:column; gap:13px;" style-hover="background:#fdfcfa;">
+          <div style="display:flex; align-items:flex-start; gap:16px;">
+            <div style="display:flex; flex-direction:column; gap:3px; min-width:0; flex:1;">
+              <span style="font-size:15px; line-height:22px; font-weight:600; color:#3f8ecc; letter-spacing:-.1px;">{{ c.title }}</span>
+              <span style="font-size:12px; line-height:18px; color:#6f685d;">{{ c.subline }}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
+              <button type="button" onClick="{{ c.onApprove }}" style="border:1px solid {{ c.approveBorder }}; background:{{ c.approveBg }}; color:#3b382f; border-radius:5px; padding:4px 10px; font:inherit; font-size:12px; line-height:16px; font-weight:500; cursor:pointer;" style-hover="background:#f5f3ee;">{{ c.approveLabel }}</button>
+              <button type="button" onClick="{{ c.onDecline }}" style="border:1px solid {{ c.declineBorder }}; background:{{ c.declineBg }}; color:#6f685d; border-radius:5px; padding:4px 10px; font:inherit; font-size:12px; line-height:16px; cursor:pointer;" style-hover="background:#f5f3ee; color:#3b382f;">{{ c.declineLabel }}</button>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:3px;">
+            <sc-for list="{{ c.changes }}" as="f" hint-placeholder-count="3">
+              <div style="display:grid; grid-template-columns:118px minmax(0,1fr) 16px minmax(0,1fr); gap:10px; align-items:baseline; font-size:13px; line-height:21px;">
+                <span style="color:#6f685d; font-size:12px;">{{ f.label }}</span>
+                <span style="color:#6f685d;">{{ f.from }}</span>
+                <span style="color:#a39b8e;">→</span>
+                <span style="font-weight:500;">{{ f.to }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+        </div>
+
+        <sc-if value="{{ c.closed }}" hint-placeholder-val="{{ true }}">
+          <div onClick="{{ c.onToggle }}" style="padding:0 17px 14px; cursor:pointer; font-size:12px; line-height:18px; color:#6f685d;">
+            <span>{{ c.matchLine }}</span>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ c.open }}">
+          <div style="background:#fdfcf9; border-top:1px solid #eeebe4; padding:16px 17px 17px; display:flex; flex-direction:column; gap:16px;">
+            <sc-for list="{{ c.changes }}" as="f" hint-placeholder-count="3">
+              <div style="display:flex; flex-direction:column; gap:5px;">
+                <span style="font-size:12px; line-height:18px; font-weight:600;">{{ f.label }}</span>
+                <div style="display:grid; grid-template-columns:118px minmax(0,1fr); gap:4px 10px; align-items:baseline; font-size:13px; line-height:21px;">
+                  <span style="color:#6f685d; font-size:12px;">Website</span>
+                  <span>{{ f.website }} <a href="{{ c.sourceUrl }}" target="_blank" style="font-size:12px;">source</a></span>
+                  <span style="color:#6f685d; font-size:12px;">CRM today</span>
+                  <span>{{ f.from }}</span>
+                  <span style="color:#6f685d; font-size:12px;">Write</span>
+                  <span style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                    <input value="{{ f.to }}" onChange="{{ f.onEdit }}" style="border:1px solid #ded9cf; border-radius:6px; background:#fff; padding:4px 8px; font:inherit; font-size:13px; line-height:20px; color:#242320; width:300px; max-width:100%; box-sizing:border-box;">
+                    <span style="font-size:12px; color:#6f685d;">{{ f.editHint }}</span>
+                  </span>
+                </div>
+              </div>
+            </sc-for>
+
+            <div style="border-top:1px solid #eeebe4; padding-top:13px; display:grid; grid-template-columns:118px minmax(0,1fr); gap:9px 10px; align-items:baseline; font-size:13px; line-height:21px;">
+              <span style="color:#6f685d; font-size:12px;">Match</span>
+              <span style="color:#57534a;">{{ c.matchLine }}</span>
+              <span style="color:#6f685d; font-size:12px;">Rationale</span>
+              <span style="color:#57534a;">{{ c.reason }}</span>
+              <span style="color:#6f685d; font-size:12px;">Link</span>
+              <span><a href="{{ c.crmUrl }}" target="_blank" style="color:#3f8ecc;">CRM record</a></span>
+            </div>
+          </div>
+        </sc-if>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1100,&quot;height&quot;:720}}">
+class Component extends DCLogic {
+  state = { open: 'findlay', edits: {}, decisions: {} };
+
+  decide(id, choice, e) {
+    e.stopPropagation();
+    this.setState(s => ({ decisions: { ...s.decisions, [id]: s.decisions[id] === choice ? null : choice } }));
+  }
+
+  money(n) { return '$' + Number(n).toLocaleString('en-US'); }
+
+  data() {
+    return [
+      {
+        id: 'findlay',
+        name: 'Bellhaven Meadows of Findlay',
+        address: '1800 N Blanchard St, Findlay, OH 45840',
+        account: '001UKEFGADQ8YCZ4YM',
+        currentParent: 'No parent on file',
+        revenue: 22000,
+        ar: 0,
+        sourceUrl: 'https://analyst-assessment-production.up.railway.app/communities/bellhaven-meadows-of-findlay',
+        changes: [
+          { key: 'parent', label: 'Parent', from: 'No parent on file', to: 'Bellhaven Senior Living', website: 'Listed under Bellhaven Senior Living' },
+          { key: 'phone', label: 'Phone', from: '(330) 975-2492', to: '(231) 533-2969', website: '(231) 533-2969' },
+          { key: 'care_type', label: 'Care offerings', from: 'Assisted Living', to: 'Assisted Living; Memory Support', website: 'Assisted Living; Memory Support' }
+        ]
+      },
+      {
+        id: 'lima',
+        name: 'Bellhaven Crossings of Lima',
+        address: '3115 N Cole St, Lima, OH 45801',
+        account: '001LGFPBJY4N9MB6KL',
+        currentParent: 'Harborview Care Group',
+        revenue: 47000,
+        ar: 0,
+        sourceUrl: 'https://analyst-assessment-production.up.railway.app/communities/bellhaven-crossings-of-lima',
+        changes: [
+          { key: 'parent', label: 'Parent', from: 'Harborview Care Group', to: 'Bellhaven Senior Living', website: 'Listed under Bellhaven Senior Living' },
+          { key: 'phone', label: 'Phone', from: '(734) 872-9575', to: '(231) 539-3617', website: '(231) 539-3617' },
+          { key: 'administrator', label: 'Administrator', from: 'Nadia Sandoval', to: 'Tricia Fitch', website: 'Tricia Fitch', swap: true }
+        ]
+      }
+    ];
+  }
+
+  renderVals() {
+    const { open, edits, decisions } = this.state;
+    const cards = this.data().map(c => {
+      const isOpen = open === c.id;
+      const decision = decisions[c.id] || null;
+      const changes = c.changes.map(f => {
+        const edited = edits[c.id + ':' + f.key];
+        const to = edited != null ? edited : f.to;
+        return {
+          ...f, to,
+          editHint: edited != null && edited !== f.website
+            ? 'Edited by you'
+            : f.swap ? 'New contact; ' + f.from + ' set inactive' : 'From website',
+          onEdit: e => this.setState(s => ({ edits: { ...s.edits, [c.id + ':' + f.key]: e.target.value } }))
+        };
+      });
+      const blocked = c.revenue > 0 && c.ar > 0;
+      return {
+        ...c, changes,
+        title: 'Update Parent and Details on ' + c.name,
+        subline: c.address + ' · currently ' + c.currentParent,
+        moneyLine: 'Lifetime revenue ' + this.money(c.revenue) + ' · Outstanding AR ' + this.money(c.ar),
+        verdict: blocked
+          ? 'Both above zero — do not move this parent. Preserve the account and create a new one instead.'
+          : (c.ar === 0 ? 'AR is zero' : 'No revenue history') + ' — re-parent this account in place. No new account needed.',
+        chowRule: 'An account is only preserved and replaced when it has revenue history and outstanding AR at the same time. ' + (blocked ? 'This one meets both, so it must not be re-parented.' : 'This one does not, so the parent can change directly.'),
+        matchLine: 'Parent correction - Name and address match, CRM parent differs',
+        reason: 'The name and address match a facility listed by Bellhaven, so this is likely an ownership change or an outdated parent assignment. Outstanding AR is ' + this.money(c.ar) + ', so the parent can move on this account instead of creating a replacement.',
+        crmUrl: 'https://analyst-assessment-production.up.railway.app/crm/bh_otLzIlpPQ3qmR3xTQ8VjVQ/accounts/' + c.account,
+        open: isOpen,
+        closed: !isOpen,
+        border: isOpen ? '#d8d3c8' : '#e4e1da',
+        approveLabel: decision === 'approve' ? 'Approved' : 'Approve',
+        declineLabel: decision === 'decline' ? 'Declined' : 'Decline',
+        approveBg: decision === 'approve' ? '#eceee7' : 'transparent',
+        declineBg: decision === 'decline' ? '#eceee7' : 'transparent',
+        approveBorder: decision === 'approve' ? '#b9b3a6' : '#dedbd4',
+        declineBorder: decision === 'decline' ? '#b9b3a6' : '#e7e4dd',
+        onApprove: e => this.decide(c.id, 'approve', e),
+        onDecline: e => this.decide(c.id, 'decline', e),
+        onToggle: () => this.setState({ open: isOpen ? null : c.id })
+      };
+    });
+    return { cards };
+  }
+}
+
+</script>
+</body>
+</html>

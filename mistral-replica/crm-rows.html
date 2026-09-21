@@ -1,0 +1,21 @@
+<sc-for list="{{ homeRows }}" as="r" hint-placeholder-count="6">
+  <button class="crm-row" type="button" sc-camel-on-click="{{ r.open }}">
+    <span class="crm-row-icon" aria-hidden="true">
+      <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">
+        <path d="M14 2H4v20h16V8l-6-6Z"></path><path d="M14 2v6h6M8 12h8M8 16h5"></path>
+      </svg>
+    </span>
+    <span class="crm-row-copy">
+      <span class="crm-row-title">{{ r.title }}</span>
+      <span class="crm-row-description">{{ r.note }}</span>
+      <span class="crm-row-meta">{{ r.meta }} · {{ r.where }}</span>
+      <span class="crm-row-tags">
+        <span class="crm-row-type" style="background: {{ r.tagBg }}; color: {{ r.tagInk }}">{{ r.typeLabel }}</span>
+        <span class="crm-row-status" style="background: {{ r.statusBg }}; color: {{ r.statusInk }}">{{ r.statusLabel }}</span>
+      </span>
+    </span>
+    <svg class="crm-row-arrow" width="12" height="12" sc-camel-view-box="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 18v4h4v-4h-4ZM16 14v4h4v-4h-4ZM20 10v4h4v-4h-4ZM16 6v4h4V6h-4ZM12 2v4h4V2h-4ZM12 10v4h4v-4h-4ZM8 10v4h4v-4H8ZM4 10v4h4v-4H4ZM0 10v4h4v-4H0Z"></path>
+    </svg>
+  </button>
+</sc-for>

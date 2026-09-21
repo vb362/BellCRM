@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f2efe9; font-family:Inter, system-ui, sans-serif; color:#242320; -webkit-font-smoothing:antialiased; }
+  a { color:#3f8ecc; text-decoration:none; }
+  a:hover { color:#2f7cc4; text-decoration:underline; }
+</style>
+</helmet>
+
+<section style="display:flex; flex-direction:column; gap:24px; padding:48px 44px 80px;">
+  <div style="display:flex; flex-direction:column; gap:8px; max-width:820px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:#6f685d; font-weight:600;">Type 7</span>
+      <span style="font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:#6f685d; font-weight:500;">Create new account + link existing</span>
+    </div>
+    <h1 style="margin:0; font-size:26px; line-height:34px; font-weight:600; letter-spacing:-.4px;">Two accounts come out, so show two accounts</h1>
+    <p style="margin:0; font-size:13px; line-height:21px; color:#77716a; text-wrap:pretty;">No old → new grammar here — nothing is replaced. A new Bellhaven account is created and the old one stays alive because it holds unpaid receivables, so the card is two panels and the link between them. The money is the reason the split exists, so it sits on the panel it belongs to. Tiffin is open.</p>
+  </div>
+
+  <div id="1a" style="display:flex; flex-direction:column; gap:10px; max-width:1000px;">
+    <sc-for list="{{ cards }}" as="c" hint-placeholder-count="2">
+      <article style="background:#fff; border:1px solid {{ c.border }}; border-radius:9px; overflow:hidden;">
+        <div onClick="{{ c.onToggle }}" style="padding:15px 17px 13px; cursor:pointer; display:flex; flex-direction:column; gap:13px;" style-hover="background:#fdfcfa;">
+          <div style="display:flex; align-items:flex-start; gap:16px;">
+            <div style="display:flex; flex-direction:column; gap:3px; min-width:0; flex:1;">
+              <span style="font-size:15px; line-height:22px; font-weight:600; color:#3f8ecc; letter-spacing:-.1px;">{{ c.title }}</span>
+              <span style="font-size:12px; line-height:18px; color:#6f685d;">{{ c.subline }}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
+              <button type="button" onClick="{{ c.onApprove }}" style="border:1px solid {{ c.approveBorder }}; background:{{ c.approveBg }}; color:#3b382f; border-radius:5px; padding:4px 10px; font:inherit; font-size:12px; line-height:16px; font-weight:500; cursor:pointer;" style-hover="background:#f5f3ee;">{{ c.approveLabel }}</button>
+              <button type="button" onClick="{{ c.onDecline }}" style="border:1px solid {{ c.declineBorder }}; background:{{ c.declineBg }}; color:#6f685d; border-radius:5px; padding:4px 10px; font:inherit; font-size:12px; line-height:16px; cursor:pointer;" style-hover="background:#f5f3ee; color:#3b382f;">{{ c.declineLabel }}</button>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px;">
+            <sc-for list="{{ c.panels }}" as="p" hint-placeholder-count="2">
+              <div style="border:1px solid {{ p.border }}; border-radius:8px; background:{{ p.bg }}; padding:11px 13px; display:flex; flex-direction:column; gap:7px; min-width:0;">
+                <span style="font-size:10px; letter-spacing:.055em; text-transform:uppercase; color:#6f685d; font-weight:600;">{{ p.tag }}</span>
+                <div style="display:grid; grid-template-columns:78px minmax(0,1fr); gap:3px 10px; align-items:baseline; font-size:13px; line-height:20px;">
+                  <sc-for list="{{ p.rows }}" as="r" hint-placeholder-count="5">
+                    <span style="color:#6f685d; font-size:12px;">{{ r.label }}</span>
+                    <span style="color:{{ r.color }}; font-weight:{{ r.weight }}; overflow-wrap:anywhere;">{{ r.value }}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display:grid; grid-template-columns:118px minmax(0,1fr); gap:5px 10px; align-items:baseline; font-size:13px; line-height:21px;">
+            <span style="color:#6f685d; font-size:12px;">Matching logic</span>
+            <span style="color:#57534a;">{{ c.evidenceLine }}</span>
+            <span style="color:#6f685d; font-size:12px;">Rationale</span>
+            <span style="color:#57534a;">{{ c.ruleLine }}</span>
+          </div>
+        </div>
+
+        <sc-if value="{{ c.open }}">
+          <div style="background:#fdfcf9; border-top:1px solid #eeebe4; padding:16px 17px 17px; display:flex; flex-direction:column; gap:18px;">
+            <div style="display:flex; flex-direction:column; gap:9px;">
+              <div style="display:flex; flex-direction:column; gap:2px;">
+                <span style="font-size:13px; line-height:20px; font-weight:600;">New Account creation actions</span>
+                <span style="font-size:12px; line-height:19px; color:#57534a;">All values from the website listing <a href="{{ c.sourceUrl }}" target="_blank" style="font-size:12px;">source</a>. Edit anything before approving.</span>
+              </div>
+              <sc-for list="{{ c.newWrites }}" as="f" hint-placeholder-count="9">
+                <div style="display:grid; grid-template-columns:150px minmax(0,1fr); gap:10px; align-items:center; font-size:13px; line-height:21px;">
+                  <span style="color:#6f685d; font-size:12px;">{{ f.label }}</span>
+                  <span style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                    <input value="{{ f.to }}" onChange="{{ f.onEdit }}" style="border:1px solid #ded9cf; border-radius:6px; background:#fff; padding:4px 8px; font:inherit; font-size:13px; line-height:20px; color:#242320; width:300px; max-width:100%; box-sizing:border-box;">
+                    <span style="font-size:12px; color:#6f685d;">{{ f.hint }}</span>
+                  </span>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:9px; border-top:1px solid #eeebe4; padding-top:15px;">
+              <div style="display:flex; flex-direction:column; gap:2px;">
+                <span style="font-size:13px; line-height:20px; font-weight:600;">{{ c.oldHead }}</span>
+                <span style="font-size:12px; line-height:19px; color:#57534a;">{{ c.oldSub }}</span>
+              </div>
+              <sc-for list="{{ c.oldWrites }}" as="f" hint-placeholder-count="1">
+                <div style="display:grid; grid-template-columns:150px minmax(0,1fr); gap:10px; align-items:baseline; font-size:13px; line-height:21px;">
+                  <span style="color:#6f685d; font-size:12px;">{{ f.label }}</span>
+                  <span><span style="color:#6f685d;">{{ f.from }}</span> <span style="color:#a39b8e;">→</span> <span style="font-weight:500;">{{ f.to }}</span></span>
+                </div>
+              </sc-for>
+              <div style="display:grid; grid-template-columns:150px minmax(0,1fr); gap:10px; align-items:baseline; font-size:13px; line-height:21px;">
+                <span style="color:#6f685d; font-size:12px;">Left untouched</span>
+                <span style="color:#57534a;">{{ c.untouched }}</span>
+              </div>
+            </div>
+
+            <div style="border-top:1px solid #eeebe4; padding-top:15px; display:grid; grid-template-columns:150px minmax(0,1fr); gap:9px 10px; align-items:baseline; font-size:13px; line-height:21px;">
+              <span style="color:#6f685d; font-size:12px;">Link</span>
+              <span><a href="{{ c.crmUrl }}" target="_blank" style="color:#3f8ecc;">CRM record</a></span>
+            </div>
+          </div>
+        </sc-if>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1100,&quot;height&quot;:740}}">
+class Component extends DCLogic {
+  state = { open: 'tiffin', edits: {}, decisions: {} };
+
+  decide(id, choice, e) {
+    e.stopPropagation();
+    this.setState(s => ({ decisions: { ...s.decisions, [id]: s.decisions[id] === choice ? null : choice } }));
+  }
+
+  money(n) { return '$' + Number(n).toLocaleString('en-US'); }
+
+  data() {
+    return [
+      {
+        id: 'tiffin',
+        name: 'Bellhaven of Tiffin',
+        address: '45 St Lawrence Dr, Tiffin, OH 44883',
+        street: '45 St Lawrence Dr', city: 'Tiffin', state: 'OH', zip: '44883',
+        account: '001U6RW32TY0WSXZZB',
+        oldParent: 'Cedar Trail Communities',
+        oldPhone: '(614) 829-9278',
+        oldCare: 'Skilled Nursing',
+        revenue: 84000,
+        ar: 12400,
+        administrator: 'Walt Osei',
+        sourceUrl: 'https://analyst-assessment-production.up.railway.app/communities/bellhaven-of-tiffin',
+        newPhone: '(260) 589-2589',
+        newCare: 'Short-Term Rehabilitation & Nursing'
+      },
+      {
+        id: 'marietta',
+        name: 'Bellhaven of Marietta',
+        address: '805 Colegate Dr, Marietta, OH 45750',
+        street: '805 Colegate Dr', city: 'Marietta', state: 'OH', zip: '45750',
+        account: '001A34WFSUYHCRBLFT',
+        oldParent: 'Cedar Trail Communities',
+        oldPhone: '(419) 353-5019',
+        oldCare: 'Skilled Nursing',
+        revenue: 51250,
+        ar: 3800,
+        administrator: 'Rosa Dietz',
+        sourceUrl: 'https://analyst-assessment-production.up.railway.app/communities/bellhaven-of-marietta',
+        newPhone: '(614) 337-1967',
+        newCare: 'Short-Term Rehabilitation & Nursing'
+      }
+    ];
+  }
+
+  renderVals() {
+    const { open, edits, decisions } = this.state;
+    const cards = this.data().map(c => {
+      const isOpen = open === c.id;
+      const decision = decisions[c.id] || null;
+      const fields = [
+        { key: 'name', label: 'name', to: c.name },
+        { key: 'parent_name', label: 'parent_name', to: 'Bellhaven Senior Living (Parent Account)' },
+        { key: 'billing_street', label: 'billing_street', to: c.street },
+        { key: 'billing_city', label: 'billing_city', to: c.city },
+        { key: 'billing_state', label: 'billing_state', to: c.state },
+        { key: 'billing_zip', label: 'billing_zip', to: c.zip },
+        { key: 'phone', label: 'phone', to: c.newPhone },
+        { key: 'care_type', label: 'care_type', to: c.newCare },
+        { key: 'status', label: 'status', to: 'Active', hint: 'Set by the create' },
+        { key: 'administrator', label: 'contact · name', to: c.administrator, hint: 'New contact, title Administrator, active' }
+      ];
+      const changes = fields.map(f => {
+        const edited = edits[c.id + ':' + f.key];
+        const to = edited != null ? edited : f.to;
+        return {
+          ...f, to,
+          hint: edited != null && edited !== f.to ? 'Edited by you' : (f.hint || 'From website'),
+          onEdit: e => this.setState(s => ({ edits: { ...s.edits, [c.id + ':' + f.key]: e.target.value } }))
+        };
+      });
+      const val = key => changes.find(f => f.key === key).to;
+      return {
+        ...c, changes,
+        newWrites: changes,
+        evidenceLine: 'Addresses match; names match, CRM parent differs or is missing, lifetime revenue and outstanding AR are both greater than zero.',
+        oldWrites: [
+          { label: 'chow_current_account', from: 'Empty', to: 'ID of the new account, assigned on approval' }
+        ],
+        oldHead: 'Existing account actions',
+        oldSub: 'Everything that carries billing history stays exactly as it is; only the CHOW pointer is set.',
+        untouched: 'name, parent_name, billing address, phone, care_type, status, lifetime_revenue ' + this.money(c.revenue) + ', outstanding_ar ' + this.money(c.ar),
+        title: 'Change of Ownership with AR and Revenue - Create and link ' + c.name,
+        subline: c.address + ' · ownership change with receivables still open',
+        matchLine: 'Ownership change - Name and address match, CRM parent differs, revenue and AR both above zero',
+        reason: 'The existing account has revenue history and unpaid receivables, so billing requires it to be preserved. A new account represents the facility under Bellhaven; the link connects it back to the old billing record.',
+        ruleLine: 'This is likely an ownership change or an outdated parent assignment. The existing account has both revenue history and unpaid receivables, so billing requires it to be preserved. A new account represents the facility under Bellhaven, while the link connects it to the old billing record.',
+        linkLine: 'chow_current_account on ' + c.account + ' is set to the new account. Nothing else on the old record changes.',
+        panels: [
+          {
+            tag: 'New account — created',
+            bg: '#fbfbf8',
+            border: '#cfcabd',
+            rows: [
+              { label: 'Name', value: val('name'), color: '#242320', weight: '500' },
+              { label: 'Parent', value: 'Bellhaven Senior Living', color: '#242320', weight: '500' },
+              { label: 'Phone', value: val('phone'), color: '#242320', weight: '400' },
+              { label: 'Care', value: val('care_type'), color: '#242320', weight: '400' },
+              { label: 'Admin', value: 'Add ' + val('administrator'), color: '#242320', weight: '400' }
+            ]
+          },
+          {
+            tag: 'Existing account — unchanged, kept for billing',
+            bg: '#fff',
+            border: '#e6e2d9',
+            rows: [
+              { label: 'Name', value: c.name + ' · ' + c.account, color: '#57534a', weight: '400' },
+              { label: 'Parent', value: c.oldParent, color: '#57534a', weight: '400' },
+              { label: 'Phone', value: c.oldPhone, color: '#57534a', weight: '400' },
+              { label: 'Care', value: c.oldCare, color: '#57534a', weight: '400' },
+              { label: 'Money', value: 'Lifetime ' + this.money(c.revenue) + ' · AR ' + this.money(c.ar) + ' open', color: '#8a5a2b', weight: '500' }
+            ]
+          }
+        ],
+        crmUrl: 'https://analyst-assessment-production.up.railway.app/crm/bh_otLzIlpPQ3qmR3xTQ8VjVQ/accounts/' + c.account,
+        open: isOpen,
+        closed: !isOpen,
+        border: isOpen ? '#d8d3c8' : '#e4e1da',
+        approveLabel: decision === 'approve' ? 'Approved' : 'Approve',
+        declineLabel: decision === 'decline' ? 'Declined' : 'Decline',
+        approveBg: decision === 'approve' ? '#eceee7' : 'transparent',
+        declineBg: decision === 'decline' ? '#eceee7' : 'transparent',
+        approveBorder: decision === 'approve' ? '#b9b3a6' : '#dedbd4',
+        declineBorder: decision === 'decline' ? '#b9b3a6' : '#e7e4dd',
+        onApprove: e => this.decide(c.id, 'approve', e),
+        onDecline: e => this.decide(c.id, 'decline', e),
+        onToggle: () => this.setState({ open: isOpen ? null : c.id })
+      };
+    });
+    return { cards };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+name: Daily Bellhaven pipeline
+
+on:
+  schedule:
+    - cron: '17 3 * * *' # Every day at 03:17 UTC.
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: bellhaven-daily-pipeline
+  cancel-in-progress: false
+
+jobs:
+  pipeline:
+    # This runner must use the same persistent installation/database as the UI.
+    runs-on: [self-hosted, bellhaven]
+    timeout-minutes: 120
+    env:
+      BELLHAVEN_PROJECT_DIR: ${{ vars.BELLHAVEN_PROJECT_DIR }}
+      BELLHAVEN_DATABASE: ${{ vars.BELLHAVEN_DATABASE || 'production' }}
+    steps:
+      # No checkout/reset: the installed code and SQLite decision history persist.
+      - name: Scrape, normalize, and match
+        shell: bash
+        run: |
+          set -euo pipefail
+          : "${BELLHAVEN_PROJECT_DIR:?Set BELLHAVEN_PROJECT_DIR to the persistent Bellhaven installation}"
+          cd "$BELLHAVEN_PROJECT_DIR"
+          .venv/bin/python -u run_pipeline.py --database "$BELLHAVEN_DATABASE"

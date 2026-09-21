@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="5e52bafc-9ca0-4774-9be1-2009c0bba969"></script>
+
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* latin-ext */
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("ea71fdaf-7cb1-4ea0-8b1f-d08d8b509c4c") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("10787c9f-9ef5-43a5-9f89-d701f54ce8a8") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("bed4f8ac-be6d-42f0-982c-63d12c6918a3") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("4ec2f46c-8099-4308-9750-82d9f3d139ee") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("c6ad82a9-c8c8-4a01-9263-5435ced5543f") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("83582468-1279-40b9-bc59-6fdd2829c578") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("523740c3-22ab-44c5-b38e-8230f82dfc91") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("00fed8cd-de2a-4732-8773-028856bf5d21") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url("ee573d55-9315-43e6-8baf-e4e1404d9337") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url("39173a2a-b804-4b0c-80cd-7ddba98e7947") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url("bfab99c0-9ff3-44f5-95ba-0ed825883801") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url("72ab315f-a0af-4a75-a897-ca235c96ebfe") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url("fca89317-f569-4f01-9cd3-12d51b1dd4b5") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url("05347a8c-e2db-48f0-ad0b-24718c2792cf") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F6F3EC; color: #1C1A17; font-family: "DM Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #175E4C; text-decoration: none; }
+  a:hover { color: #0F3F34; }
+  ::selection { background: #E3EDE6; }
+</style>
+</helmet>
+<div style="display: flex; flex-direction: column; min-height: 100vh; background: #F6F3EC">
+
+  <div style="position: sticky; top: 0; z-index: 20; flex: 0 0 auto; display: flex; align-items: center; gap: 14px; background: #F6F3EC; height: {{ topBarH }}; padding: 0 {{ topBarPadX }}">
+    <div sc-camel-on-mouse-enter="{{ logoIn }}" sc-camel-on-mouse-leave="{{ logoOut }}" style="display: flex; align-items: center; gap: 9px; flex: 0 0 auto">
+      <sc-if value="{{ logoVisible }}" hint-placeholder-val="{{ true }}">
+        <img src="ff698e56-3525-4cfe-acfd-3d7e8f4f7a87" alt="Clipboard" style="flex: 0 0 auto; height: {{ logoPx }}; width: auto; display: block">
+      </sc-if>
+      <sc-if value="{{ logoHover }}" hint-placeholder-val="{{ false }}">
+        <button sc-camel-on-click="{{ toggleRail }}" title="Toggle sidebar" style="flex: 0 0 auto; width: {{ logoPx }}; height: {{ logoPx }}; border-radius: 8px; border: 1px solid #DDD6C8; background: #FBF9F4; color: #5C564E; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0" style-hover="color: #1C1A17; background: #EFEAE0">
+          <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg>
+        </button>
+      </sc-if>
+    </div>
+  </div>
+
+  <div style="flex: 1; display: flex; align-items: stretch; min-height: 0">
+
+  <aside style="flex: 0 0 auto; position: sticky; align-self: flex-start; top: {{ topBarH }}; height: {{ railH }}; overflow-y: auto; display: flex; flex-direction: column; background: #F6F3EC; width: {{ railW }}">
+
+    <nav style="display: flex; flex-direction: column; gap: 1px; padding: 8px {{ navPadX }}">
+      <button sc-camel-on-click="{{ n.home.go }}" style="display: flex; align-items: center; width: 100%; height: 32px; text-align: left; border: 0; cursor: pointer; font: inherit; font-size: 14px; line-height: 1; border-radius: 6px; margin-bottom: 2px; gap: {{ navGap }}; padding: {{ navItemPad }}; color: {{ n.home.ink }}; background: {{ n.home.bg }}; font-weight: {{ n.home.weight }}" style-hover="background: #EFEAE0">
+        <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto"><path d="M3.5 10.5 12 4l8.5 6.5V20a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1z"></path><path d="M9.5 21v-6h5v6"></path></svg>
+        <span style="flex: 1; white-space: nowrap; display: {{ labelDisplay }}">Home</span>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #A79E90; display: {{ labelDisplay }}">{{ n.home.count }}</span>
+      </button>
+      <button sc-camel-on-click="{{ n.runs.go }}" style="display: flex; align-items: center; width: 100%; height: 32px; text-align: left; border: 0; cursor: pointer; font: inherit; font-size: 14px; line-height: 1; border-radius: 6px; margin-bottom: 2px; gap: {{ navGap }}; padding: {{ navItemPad }}; color: {{ n.runs.ink }}; background: {{ n.runs.bg }}; font-weight: {{ n.runs.weight }}" style-hover="background: #EFEAE0">
+        <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto"><path d="M20.5 12a8.5 8.5 0 1 1-2.6-6.1"></path><path d="M20.5 4v4.5H16"></path><path d="M12 8v4.4l2.8 1.7"></path></svg>
+        <span style="flex: 1; white-space: nowrap; display: {{ labelDisplay }}">Runs</span>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #A79E90; display: {{ labelDisplay }}">{{ n.runs.count }}</span>
+      </button>
+      <button sc-camel-on-click="{{ n.sources.go }}" style="display: flex; align-items: center; width: 100%; height: 32px; text-align: left; border: 0; cursor: pointer; font: inherit; font-size: 14px; line-height: 1; border-radius: 6px; margin-bottom: 2px; gap: {{ navGap }}; padding: {{ navItemPad }}; color: {{ n.sources.ink }}; background: {{ n.sources.bg }}; font-weight: {{ n.sources.weight }}" style-hover="background: #EFEAE0">
+        <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto"><ellipse cx="12" cy="6" rx="7.5" ry="3"></ellipse><path d="M4.5 6v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"></path><path d="M4.5 12v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"></path></svg>
+        <span style="flex: 1; white-space: nowrap; display: {{ labelDisplay }}">Sources</span>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #A79E90; display: {{ labelDisplay }}">{{ n.sources.count }}</span>
+      </button>
+      <button sc-camel-on-click="{{ n.settings.go }}" style="display: flex; align-items: center; width: 100%; height: 32px; text-align: left; border: 0; cursor: pointer; font: inherit; font-size: 14px; line-height: 1; border-radius: 6px; margin-bottom: 2px; gap: {{ navGap }}; padding: {{ navItemPad }}; color: {{ n.settings.ink }}; background: {{ n.settings.bg }}; font-weight: {{ n.settings.weight }}" style-hover="background: #EFEAE0">
+        <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto"><circle cx="12" cy="12" r="3.2"></circle><path d="M19.4 14.5a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5v.2a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1h.2a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"></path></svg>
+        <span style="flex: 1; white-space: nowrap; display: {{ labelDisplay }}">Settings</span>
+      </button>
+    </nav>
+
+    <div style="padding: 8px {{ navPadX }} 0; display: {{ labelDisplay }}">
+      <div style="height: 32px; display: flex; align-items: center; padding: 0 8px; font-size: 12px; font-weight: 500; color: #A79E90">Review</div>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 1px; padding: 0 {{ navPadX }}">
+      <button sc-camel-on-click="{{ n.queue.go }}" style="display: flex; align-items: center; width: 100%; height: 32px; text-align: left; border: 0; cursor: pointer; font: inherit; font-size: 14px; line-height: 1; border-radius: 6px; margin-bottom: 2px; gap: {{ navGap }}; padding: {{ navItemPad }}; color: {{ n.queue.ink }}; background: {{ n.queue.bg }}; font-weight: {{ n.queue.weight }}" style-hover="background: #EFEAE0">
+        <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto"><path d="M4 6h10M4 12h10M4 18h6"></path><path d="M16.5 17.5 18.5 19.5 22 15.5"></path></svg>
+        <span style="flex: 1; white-space: nowrap; display: {{ labelDisplay }}">Review queue</span>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #A79E90; display: {{ labelDisplay }}">{{ n.queue.count }}</span>
+      </button>
+      <button sc-camel-on-click="{{ n.accounts.go }}" style="display: flex; align-items: center; width: 100%; height: 32px; text-align: left; border: 0; cursor: pointer; font: inherit; font-size: 14px; line-height: 1; border-radius: 6px; margin-bottom: 2px; gap: {{ navGap }}; padding: {{ navItemPad }}; color: {{ n.accounts.ink }}; background: {{ n.accounts.bg }}; font-weight: {{ n.accounts.weight }}" style-hover="background: #EFEAE0">
+        <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto"><path d="M4 20V6.5a1.5 1.5 0 0 1 1.5-1.5h7A1.5 1.5 0 0 1 14 6.5V20"></path><path d="M14 10h4.5A1.5 1.5 0 0 1 20 11.5V20"></path><path d="M2.5 20h19"></path><path d="M7 9h4M7 13h4"></path></svg>
+        <span style="flex: 1; white-space: nowrap; display: {{ labelDisplay }}">Accounts</span>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #A79E90; display: {{ labelDisplay }}">1,284</span>
+      </button>
+    </nav>
+
+    <div style="margin: auto 10px 0; padding: 12px; border: 1px solid #E6E0D4; border-radius: 10px; background: #FBF9F4; display: {{ labelDisplay }}">
+      <div style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #A79E90">Last run</div>
+      <div style="font-size: 13px; margin-top: 6px; line-height: 1.45">{{ lastRunWhen }}<br><span style="color: #7A736A">{{ lastRunSummary }}</span></div>
+    </div>
+
+    <div style="margin-top: {{ workspaceTop }}; border-top: 1px solid #E6E0D4; padding: 12px 8px; display: flex; align-items: center; gap: 10px">
+      <div style="flex: 0 0 auto; width: 30px; height: 30px; border-radius: 8px; background: #EFEAE0; color: #7A736A; font-size: 11.5px; font-weight: 500; display: flex; align-items: center; justify-content: center">BH</div>
+      <div style="min-width: 0; flex: 1; display: {{ labelDisplay }}">
+        <div style="font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Bellhaven Ops</div>
+        <div style="font-size: 11.5px; color: #A79E90; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Default workspace</div>
+      </div>
+      <svg width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="#A79E90" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; display: {{ labelDisplay }}"><path d="m6 9 6 6 6-6"></path></svg>
+    </div>
+  </aside>
+
+  <div sc-camel-on-mouse-down="{{ startResize }}" title="Drag to resize" style="flex: 0 0 5px; margin: 0 -2px; cursor: col-resize; z-index: 15; background: transparent" style-hover="background: rgba(28,26,23,0.12)"></div>
+
+  <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; background: #FFFFFF; border-top-left-radius: 16px; box-shadow: 0 0 0 1px #E9E3D8; overflow: hidden">
+
+  <main style="flex: 1; min-width: 0; padding: {{ sectionTop }} {{ mainPadX }} 80px">
+
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 22px">
+        <div style="display: grid; align-items: start; gap: {{ colGap }}; grid-template-columns: {{ homeCols }}; max-width: 1240px; margin: {{ contentShift }}">
+
+          <div style="display: flex; flex-direction: column; gap: 38px">
+            <div class="crm-request-filters" role="group" aria-label="Request filters" style="border: 1px solid #E6E0D4; border-radius: 12px; background: #FFFFFF; overflow: hidden">
+              <button type="button" aria-pressed="{{ reviewSelected }}" sc-camel-on-click="{{ goReviewRequests }}" style="display: flex; align-items: center; gap: 6px; width: 100%; min-height: 38px; text-align: left; border: 0; cursor: pointer; font: inherit; font-size: 12.5px; padding: 8px 10px; color: {{ reviewInk }}; background: {{ reviewBg }}; font-weight: {{ reviewWeight }}; border-left: 2px solid {{ reviewBar }}; border-bottom: 1px solid #F1ECE2">
+                <span style="flex: 1; min-width: 0">Requests to review</span>
+                <span style="font-family: 'DM Mono', monospace; font-size: 11.5px; color: #7A736A; background: #EFEAE0; padding: 2px 6px; border-radius: 5px; flex-shrink: 0">{{ reviewCount }}</span>
+              </button>
+              <button type="button" aria-expanded="{{ allRequestsExpanded }}" aria-controls="crm-request-statuses" sc-camel-on-click="{{ toggleAllRequests }}" style="display: flex; align-items: center; gap: 6px; width: 100%; min-height: 38px; text-align: left; border: 0; cursor: pointer; font: inherit; font-size: 12.5px; padding: 8px 10px; color: {{ allRequestsInk }}; background: {{ allRequestsBg }}; font-weight: {{ allRequestsWeight }}; border-left: 2px solid {{ allRequestsBar }}">
+                <svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="flex-shrink: 0; transform: {{ allRequestsChevron }}; transition: transform 160ms ease"><path d="m9 5 7 7-7 7"></path></svg>
+                <span style="flex: 1; min-width: 0">All requests</span>
+                <span style="font-family: 'DM Mono', monospace; font-size: 11.5px; color: #7A736A; background: #EFEAE0; padding: 2px 6px; border-radius: 5px; flex-shrink: 0">{{ allRequestsCount }}</span>
+              </button>
+              <div id="crm-request-statuses" style="display: {{ requestStatusesDisplay }}; margin: 0 8px 8px 18px; border-left: 1px solid #E6E0D4; padding-left: 7px">
+                <sc-for list="{{ homeBuckets }}" as="b" hint-placeholder-count="3">
+                  <button type="button" aria-pressed="{{ b.selected }}" sc-camel-on-click="{{ b.go }}" style="display: flex; align-items: center; gap: 6px; width: 100%; min-height: 38px; text-align: left; border: 0; cursor: pointer; font: inherit; font-size: 12.5px; padding: 8px 10px; color: {{ b.ink }}; background: {{ b.bg }}; font-weight: {{ b.weight }}; border-left: 2px solid {{ b.bar }}; border-radius: 5px">
+                    <span style="flex: 1; min-width: 0">{{ b.label }}</span>
+                    <span style="font-family: 'DM Mono', monospace; font-size: 11.5px; color: #7A736A; background: #EFEAE0; padding: 2px 6px; border-radius: 5px; flex-shrink: 0">{{ b.count }}</span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size: 12.5px; font-weight: 500; color: #4A453E; padding: 0 2px 14px">By proposal type</div>
+              <div style="border: 1px solid #E6E0D4; border-radius: 12px; background: #FFFFFF; overflow: hidden">
+                <sc-for list="{{ homeTypeFilters }}" as="t" hint-placeholder-count="5">
+                  <button sc-camel-on-click="{{ t.go }}" style="display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; border: 0; border-bottom: 1px solid #EFEAE0; cursor: pointer; font: inherit; font-size: 12.5px; padding: 8px 11px; color: #5C564E; background: transparent" style-hover="background: #FFFFFF; color: #1C1A17">
+                    <span style="flex: 1; white-space: nowrap">{{ t.label }}</span>
+                    <span style="font-family: 'DM Mono', monospace; font-size: 11.5px; color: #A79E90">{{ t.count }}</span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 0 2px 14px">
+              <div style="display: flex; align-items: baseline; gap: 7px">
+                <span style="font-size: 12.5px; font-weight: 500; color: #4A453E">{{ homeTitle }}</span>
+                <span style="font-size: 12.5px; color: #A79E90; font-family: 'DM Mono', monospace">{{ homeCount }}</span>
+              </div>
+              <span style="font-size: 12.5px; color: #7A736A; white-space: nowrap">Sort: Most recent</span>
+            </div>
+          <section style="border: 1px solid #E6E0D4; border-radius: 14px; background: #FFFFFF; overflow: hidden">
+            <sc-for list="{{ homeRows }}" as="r" hint-placeholder-count="6">
+              <div sc-camel-on-click="{{ r.open }}" style="cursor: pointer; display: grid; gap: 8px 16px; align-items: start; padding: {{ rowPad }}; border-bottom: 1px solid #F4F0E7; grid-template-columns: {{ homeRowCols }}" style-hover="background: #FBF9F4">
+                <div style="min-width: 0">
+                  <div style="font-size: 13.5px; font-weight: 500; color: #175E4C; letter-spacing: -0.005em; text-wrap: pretty">{{ r.title }}</div>
+                  <div style="font-size: 12px; color: #7A736A; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ r.meta }} · {{ r.where }}</div>
+                  <div style="font-size: 12px; color: #A79E90; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ r.note }}</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: {{ homeRowAlign }}">
+                  <span style="font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; font-family: 'DM Mono', monospace; padding: 3px 8px; border-radius: 5px; white-space: nowrap; background: {{ r.tagBg }}; color: {{ r.tagInk }}">{{ r.typeLabel }}</span>
+                  <span style="font-size: 12px; padding: 4px 10px; border-radius: 999px; white-space: nowrap; background: {{ r.statusBg }}; color: {{ r.statusInk }}">{{ r.statusLabel }}</span>
+                </div>
+              </div>
+            </sc-for>
+
+            <sc-if value="{{ homeEmpty }}" hint-placeholder-val="{{ false }}">
+              <div style="padding: 44px 20px; text-align: center; color: #7A736A; font-size: 13.5px">{{ homeEmptyNote }}</div>
+            </sc-if>
+          </section>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isQueue }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 22px">
+
+        <header style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap">
+          <div>
+            <h1 style="font-family: Newsreader, serif; font-weight: 400; font-size: 34px; line-height: 1.1; margin: 0; letter-spacing: -0.015em">Review queue</h1>
+            <p style="margin: 8px 0 0; color: #7A736A; font-size: 14px; max-width: 62ch">{{ queueSubhead }}</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px">
+            <sc-if value="{{ showBulk }}" hint-placeholder-val="{{ false }}">
+              <button sc-camel-on-click="{{ approveSelected }}" style="border: 0; cursor: pointer; font: inherit; font-size: 13.5px; font-weight: 500; color: #FBF9F4; background: #175E4C; padding: 10px 18px; border-radius: 8px; white-space: nowrap" style-hover="background: #0F3F34">{{ bulkLabel }}</button>
+            </sc-if>
+            <button sc-camel-on-click="{{ toggleSelectAll }}" style="border: 1px solid #DDD6C8; background: #FBF9F4; cursor: pointer; font: inherit; font-size: 13.5px; color: #4A453E; padding: 9px 15px; border-radius: 8px; white-space: nowrap" style-hover="border-color: #C3BBAA">{{ selectAllLabel }}</button>
+          </div>
+        </header>
+
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center">
+          <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="6">
+            <button sc-camel-on-click="{{ chip.go }}" style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid {{ chip.border }}; background: {{ chip.bg }}; color: {{ chip.ink }}; cursor: pointer; font: inherit; font-size: 13px; padding: 7px 13px; border-radius: 999px; white-space: nowrap" style-hover="border-color: #C3BBAA">
+              <span>{{ chip.label }}</span>
+              <span style="font-family: 'DM Mono', monospace; font-size: 11px; opacity: 0.7">{{ chip.count }}</span>
+            </button>
+          </sc-for>
+        </div>
+
+        <div style="display: grid; gap: 22px; align-items: start; grid-template-columns: {{ splitCols }}">
+
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <sc-for list="{{ visible }}" as="p" hint-placeholder-count="7">
+              <div sc-camel-on-click="{{ p.select }}" style="cursor: pointer; background: {{ p.cardBg }}; border: 1px solid {{ p.cardBorder }}; border-radius: 12px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: {{ p.shadow }}" style-hover="border-color: #C3BBAA">
+                <button sc-camel-on-click="{{ p.toggle }}" style="flex: 0 0 auto; margin-top: 2px; width: 17px; height: 17px; border-radius: 4px; cursor: pointer; border: 1.5px solid {{ p.boxBorder }}; background: {{ p.boxBg }}; color: #FBF9F4; font-size: 11px; line-height: 1; display: flex; align-items: center; justify-content: center; padding: 0">{{ p.check }}</button>
+                <div style="min-width: 0; flex: 1">
+                  <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px">
+                    <span style="font-size: 14.5px; font-weight: 500; letter-spacing: -0.005em">{{ p.name }}</span>
+                    <span style="font-family: 'DM Mono', monospace; font-size: 11.5px; color: {{ p.scoreInk }}">{{ p.scoreText }}</span>
+                  </div>
+                  <div style="color: #7A736A; font-size: 12.5px; margin-top: 3px">{{ p.where }}</div>
+                  <div style="margin-top: 9px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap">
+                    <span style="font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; font-family: 'DM Mono', monospace; padding: 3px 8px; border-radius: 5px; white-space: nowrap; background: {{ p.tagBg }}; color: {{ p.tagInk }}">{{ p.typeLabel }}</span>
+                    <span style="font-size: 12px; color: #A79E90">{{ p.hint }}</span>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+            <sc-if value="{{ queueEmpty }}" hint-placeholder-val="{{ false }}">
+              <div style="border: 1px dashed #DDD6C8; border-radius: 12px; padding: 30px 20px; text-align: center; color: #7A736A; font-size: 13.5px">Nothing in this bucket.</div>
+            </sc-if>
+          </div>
+
+          <section style="background: #FDFCF8; border: 1px solid #E6E0D4; border-radius: 16px; padding: 26px 28px 22px; box-shadow: 0 1px 2px rgba(28,26,23,0.03)">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap">
+              <div>
+                <div style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: {{ d.typeInk }}">{{ d.typeLabel }}</div>
+                <h2 style="font-family: Newsreader, serif; font-weight: 400; font-size: 27px; margin: 7px 0 0; letter-spacing: -0.01em">{{ d.name }}</h2>
+                <div style="color: #7A736A; font-size: 13.5px; margin-top: 5px">{{ d.where }} · <span style="font-family: 'DM Mono', monospace">{{ d.crmId }}</span></div>
+              </div>
+              <div style="text-align: right">
+                <div style="font-family: 'DM Mono', monospace; font-size: 24px; color: {{ d.scoreInk }}">{{ d.scoreText }}</div>
+                <div style="font-size: 12px; color: #A79E90; margin-top: 2px">{{ d.scoreCaption }}</div>
+              </div>
+            </div>
+
+            <sc-if value="{{ d.hasRule }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top: 20px; border: 1px solid #E2D6BC; background: #FAF3E2; border-radius: 10px; padding: 14px 16px">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #8A6D2B">Rule triggered</div>
+                <div style="font-size: 13.5px; line-height: 1.5; margin-top: 6px; color: #4A453E">{{ d.rule }}</div>
+              </div>
+            </sc-if>
+
+            <div style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px">
+              <div style="border: 1px solid #E6E0D4; border-radius: 12px; overflow: hidden; background: #FFFFFF">
+                <div style="padding: 11px 15px; border-bottom: 1px solid #EFEAE0; display: flex; justify-content: space-between; align-items: baseline">
+                  <span style="font-size: 12.5px; font-weight: 500">{{ d.leftTitle }}</span>
+                  <span style="font-size: 11px; color: #A79E90; font-family: 'DM Mono', monospace">{{ d.leftMeta }}</span>
+                </div>
+                <div style="display: flex; flex-direction: column">
+                  <sc-for list="{{ d.left }}" as="f" hint-placeholder-count="5">
+                    <div style="display: grid; grid-template-columns: 86px minmax(0,1fr); gap: 12px; padding: 9px 15px; border-bottom: 1px solid #F4F0E7; background: {{ f.bg }}">
+                      <span style="font-size: 11.5px; color: #A79E90; font-family: 'DM Mono', monospace; padding-top: 1px">{{ f.label }}</span>
+                      <span style="font-size: 13px; line-height: 1.45; color: {{ f.ink }}">{{ f.value }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+
+              <div style="border: 1px solid #E6E0D4; border-radius: 12px; overflow: hidden; background: #FFFFFF">
+                <div style="padding: 11px 15px; border-bottom: 1px solid #EFEAE0; display: flex; justify-content: space-between; align-items: baseline">
+                  <span style="font-size: 12.5px; font-weight: 500">{{ d.rightTitle }}</span>
+                  <span style="font-size: 11px; color: #A79E90; font-family: 'DM Mono', monospace">{{ d.rightMeta }}</span>
+                </div>
+                <div style="display: flex; flex-direction: column">
+                  <sc-for list="{{ d.right }}" as="f" hint-placeholder-count="5">
+                    <div style="display: grid; grid-template-columns: 86px minmax(0,1fr); gap: 12px; padding: 9px 15px; border-bottom: 1px solid #F4F0E7; background: {{ f.bg }}">
+                      <span style="font-size: 11.5px; color: #A79E90; font-family: 'DM Mono', monospace; padding-top: 1px">{{ f.label }}</span>
+                      <span style="font-size: 13px; line-height: 1.45; color: {{ f.ink }}">{{ f.value }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 24px">
+              <div style="font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #A79E90">Why this matched</div>
+              <div style="margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px">
+                <sc-for list="{{ d.signals }}" as="s" hint-placeholder-count="4">
+                  <div>
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+                      <span style="font-size: 12.5px; color: #4A453E">{{ s.label }}</span>
+                      <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #1C1A17">{{ s.value }}</span>
+                    </div>
+                    <div style="height: 4px; border-radius: 3px; background: #EFEAE0; margin-top: 7px; overflow: hidden">
+                      <div style="height: 100%; border-radius: 3px; width: {{ s.width }}; background: {{ s.fill }}"></div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="margin-top: 26px; border-top: 1px solid #EFEAE0; padding-top: 20px">
+              <div style="font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #A79E90">If approved, this writes</div>
+              <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 7px">
+                <sc-for list="{{ d.writes }}" as="w" hint-placeholder-count="3">
+                  <div style="display: grid; grid-template-columns: 150px minmax(0,1fr); gap: 14px; align-items: baseline; font-size: 13px">
+                    <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #7A736A">{{ w.field }}</span>
+                    <span style="line-height: 1.5"><span style="color: #A79E90; text-decoration: line-through">{{ w.from }}</span> <span style="color: #C3BBAA; margin: 0 6px">→</span> <span style="color: #175E4C; font-weight: 500">{{ w.to }}</span></span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="margin-top: 26px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+              <button sc-camel-on-click="{{ approveOne }}" style="border: 0; cursor: pointer; font: inherit; font-size: 14px; font-weight: 500; color: #FBF9F4; background: #175E4C; padding: 11px 22px; border-radius: 8px" style-hover="background: #0F3F34">Approve</button>
+              <button sc-camel-on-click="{{ rejectOne }}" style="border: 1px solid #DDD6C8; background: #FFFFFF; cursor: pointer; font: inherit; font-size: 14px; color: #4A453E; padding: 10px 18px; border-radius: 8px" style-hover="border-color: #C08072; color: #A5402C">Reject</button>
+              <button sc-camel-on-click="{{ skipOne }}" style="border: 0; background: transparent; cursor: pointer; font: inherit; font-size: 13.5px; color: #7A736A; padding: 10px 8px" style-hover="color: #1C1A17">Skip for now</button>
+              <span style="margin-left: auto; font-size: 12.5px; color: #A79E90">{{ d.decidedNote }}</span>
+            </div>
+          </section>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isRun }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 26px; max-width: 900px">
+        <header>
+          <h1 style="font-family: Newsreader, serif; font-weight: 400; font-size: 34px; line-height: 1.1; margin: 0; letter-spacing: -0.015em">Run summary</h1>
+          <p style="margin: 8px 0 0; color: #7A736A; font-size: 14px">{{ runHeadline }}</p>
+        </header>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px">
+          <sc-for list="{{ runStats }}" as="st" hint-placeholder-count="4">
+            <div style="background: #FDFCF8; border: 1px solid #E6E0D4; border-radius: 12px; padding: 18px 20px">
+              <div style="font-family: Newsreader, serif; font-size: 30px; line-height: 1; color: {{ st.ink }}">{{ st.value }}</div>
+              <div style="font-size: 12.5px; color: #7A736A; margin-top: 8px">{{ st.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="background: #FDFCF8; border: 1px solid #E6E0D4; border-radius: 14px; padding: 22px 24px">
+          <div style="font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #A79E90">Proposals by type</div>
+          <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 13px">
+            <sc-for list="{{ runBreakdown }}" as="b" hint-placeholder-count="5">
+              <div style="display: grid; grid-template-columns: 190px minmax(0,1fr) 46px; gap: 16px; align-items: center">
+                <span style="font-size: 13.5px">{{ b.label }}</span>
+                <div style="height: 8px; border-radius: 4px; background: #EFEAE0; overflow: hidden">
+                  <div style="height: 100%; width: {{ b.width }}; background: {{ b.fill }}; border-radius: 4px"></div>
+                </div>
+                <span style="font-family: 'DM Mono', monospace; font-size: 12.5px; text-align: right; color: #4A453E">{{ b.count }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="background: #FDFCF8; border: 1px solid #E6E0D4; border-radius: 14px; padding: 22px 24px">
+          <div style="font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #A79E90">Pipeline stages</div>
+          <div style="margin-top: 14px; display: flex; flex-direction: column">
+            <sc-for list="{{ runStages }}" as="s" hint-placeholder-count="5">
+              <div style="display: grid; grid-template-columns: 20px minmax(0,1fr) auto auto; gap: 14px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid #F4F0E7">
+                <span style="color: {{ s.ink }}; font-size: 13px">{{ s.mark }}</span>
+                <span style="font-size: 13.5px">{{ s.label }}</span>
+                <span style="font-size: 12.5px; color: #7A736A">{{ s.detail }}</span>
+                <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #A79E90">{{ s.time }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <button sc-camel-on-click="{{ goQueue }}" style="border: 0; cursor: pointer; font: inherit; font-size: 14px; font-weight: 500; color: #FBF9F4; background: #175E4C; padding: 11px 22px; border-radius: 8px" style-hover="background: #0F3F34">{{ runCta }}</button>
+        </div>
+      </div>
+    </sc-if>
+
+  </main>
+  </div>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:960},&quot;showLogo&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Topbar&quot;},&quot;logoSize&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:44,&quot;min&quot;:12,&quot;max&quot;:64,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Topbar&quot;},&quot;topBarHeight&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:36,&quot;max&quot;:120,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Topbar&quot;},&quot;topBarPadX&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:80,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Topbar&quot;},&quot;navItemPadX&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:10,&quot;min&quot;:0,&quot;max&quot;:28,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Sidebar&quot;},&quot;navIconGap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:5,&quot;min&quot;:2,&quot;max&quot;:24,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Sidebar&quot;},&quot;railCollapsedWidth&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:46,&quot;min&quot;:36,&quot;max&quot;:96,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Sidebar&quot;},&quot;railCollapsedPad&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:5,&quot;min&quot;:0,&quot;max&quot;:24,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Sidebar&quot;},&quot;rowPadY&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:12,&quot;min&quot;:6,&quot;max&quot;:32,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Spacing&quot;},&quot;sectionTop&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:16,&quot;min&quot;:0,&quot;max&quot;:140,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Spacing&quot;},&quot;pageMargin&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:12,&quot;min&quot;:0,&quot;max&quot;:200,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Spacing&quot;},&quot;columnGap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:74,&quot;min&quot;:12,&quot;max&quot;:140,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Spacing&quot;},&quot;contentShift&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:-176,&quot;min&quot;:-200,&quot;max&quot;:200,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Spacing&quot;},&quot;filterWidth&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:192,&quot;min&quot;:110,&quot;max&quot;:300,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Spacing&quot;},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#8A4B2A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#175E4C&quot;,&quot;#1F4E79&quot;,&quot;#8A4B2A&quot;,&quot;#3D3A52&quot;]},&quot;bulkApprove&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+const TYPES = {
+  confident: { label: "Confident match", tagBg: "#E7EFE9", tagInk: "#2C6B55", fill: "#2C6B55" },
+  fix: { label: "Needs fix", tagBg: "#F1ECE1", tagInk: "#7A6A45", fill: "#9A854F" },
+  location: { label: "New location", tagBg: "#E9EDF3", tagInk: "#465A75", fill: "#516A88" },
+  orphan: { label: "Orphaned account", tagBg: "#F3EAE6", tagInk: "#8A5544", fill: "#A5644F" },
+  chow: { label: "CHOW", tagBg: "#FAF0DC", tagInk: "#8A6D2B", fill: "#B08A38" }
+};
+
+const DATA = [
+  {
+    id: "p-1041", type: "confident", name: "Marbury House", where: "Asheville, NC", crmId: "ACC-20418", score: 0.94,
+    hint: "address + name agree",
+    left: [["name", "Marbury House Senior Living", false], ["address", "118 Old Mill Rd", false], ["city", "Asheville, NC 28801", false], ["phone", "(828) 555-0142", true], ["status", "Operating", false]],
+    right: [["name", "Marbury House", false], ["address", "118 Old Mill Rd", false], ["city", "Asheville, NC 28801", false], ["phone", "(828) 555-0119", true], ["status", "Operating", false]],
+    signals: [["Name similarity", "0.91"], ["Street match", "exact"], ["ZIP match", "exact"], ["Distance", "0.0 mi"]],
+    writes: [["phone", "(828) 555-0119", "(828) 555-0142"], ["last_verified", "2026-06-02", "2026-09-19"]]
+  },
+  {
+    id: "p-1042", type: "confident", name: "Cedar Ridge Care", where: "Greenville, SC", crmId: "ACC-11907", score: 0.92,
+    hint: "address + name agree",
+    left: [["name", "Cedar Ridge Care Center", false], ["address", "4120 Pelham Rd", false], ["city", "Greenville, SC 29615", false], ["beds", "96", true], ["status", "Operating", false]],
+    right: [["name", "Cedar Ridge Care", false], ["address", "4120 Pelham Rd", false], ["city", "Greenville, SC 29615", false], ["beds", "88", true], ["status", "Operating", false]],
+    signals: [["Name similarity", "0.88"], ["Street match", "exact"], ["ZIP match", "exact"], ["Distance", "0.0 mi"]],
+    writes: [["bed_count", "88", "96"], ["last_verified", "2026-05-14", "2026-09-19"]]
+  },
+  {
+    id: "p-1043", type: "fix", name: "Harlow Springs", where: "Knoxville, TN", crmId: "ACC-30552", score: 0.71,
+    hint: "suite number differs",
+    left: [["name", "Harlow Springs Assisted Living", false], ["address", "2201 Kingston Pike, Ste 300", true], ["city", "Knoxville, TN 37919", false], ["phone", "(865) 555-0188", false], ["status", "Operating", false]],
+    right: [["name", "Harlow Springs", false], ["address", "2201 Kingston Pike", true], ["city", "Knoxville, TN 37919", false], ["phone", "(865) 555-0188", false], ["status", "Operating", false]],
+    signals: [["Name similarity", "0.84"], ["Street match", "partial"], ["ZIP match", "exact"], ["Distance", "0.0 mi"]],
+    writes: [["street_2", "—", "Ste 300"], ["last_verified", "2026-04-28", "2026-09-19"]]
+  },
+  {
+    id: "p-1044", type: "fix", name: "Wren & Sons Hospitality", where: "Mobile, AL", crmId: "ACC-27740", score: 0.64,
+    hint: "legal name changed",
+    left: [["name", "Wren Hospitality Group LLC", true], ["address", "77 Dauphin St", false], ["city", "Mobile, AL 36602", false], ["phone", "(251) 555-0110", true], ["status", "Operating", false]],
+    right: [["name", "Wren & Sons Hospitality", true], ["address", "77 Dauphin St", false], ["city", "Mobile, AL 36602", false], ["phone", "(251) 555-0173", true], ["status", "Operating", false]],
+    signals: [["Name similarity", "0.62"], ["Street match", "exact"], ["ZIP match", "exact"], ["Distance", "0.0 mi"]],
+    writes: [["legal_name", "Wren & Sons Hospitality", "Wren Hospitality Group LLC"], ["phone", "(251) 555-0173", "(251) 555-0110"]]
+  },
+  {
+    id: "p-1045", type: "location", name: "Pinecrest Commons — West", where: "Macon, GA", crmId: "no match", score: 0.38,
+    hint: "no CRM record within 12 mi",
+    left: [["name", "Pinecrest Commons West", false], ["address", "980 Riverside Dr", false], ["city", "Macon, GA 31201", false], ["phone", "(478) 555-0166", false], ["status", "Operating", false]],
+    right: [["name", "—", false], ["address", "—", false], ["city", "—", false], ["phone", "—", false], ["status", "—", false]],
+    signals: [["Name similarity", "0.41"], ["Street match", "none"], ["ZIP match", "none"], ["Nearest CRM site", "12.4 mi"]],
+    writes: [["account", "—", "create new"], ["parent_id", "—", "ACC-19004 (Pinecrest Commons)"], ["source", "—", "website crawl 09-19"]]
+  },
+  {
+    id: "p-1046", type: "orphan", name: "Alder Point Manor", where: "Chattanooga, TN", crmId: "ACC-14883", score: 0.22,
+    hint: "not on site for 3 runs",
+    left: [["name", "—", false], ["address", "—", false], ["city", "—", false], ["phone", "—", false], ["status", "not listed", true]],
+    right: [["name", "Alder Point Manor", false], ["address", "3300 Broad St", false], ["city", "Chattanooga, TN 37408", false], ["phone", "(423) 555-0102", false], ["status", "Operating", true]],
+    signals: [["Runs absent", "3 of 3"], ["Last seen", "Jun 2026"], ["Open AR", "$0"], ["Revenue 12mo", "$0"]],
+    writes: [["status", "Operating", "Inactive — unverified"], ["review_flag", "—", "ops follow-up"]]
+  },
+  {
+    id: "p-1047", type: "chow", name: "Thistlewood Estates", where: "Columbia, SC", crmId: "ACC-22615", score: 0.79,
+    hint: "operator changed, AR open",
+    rule: "Prior account has 12-month revenue ($418k) and open AR ($26.4k) above zero, so it is not re-parented. Create a new account under the incoming operator and link the two with a change-of-ownership relationship.",
+    left: [["operator", "Vantage Senior Partners", true], ["name", "Thistlewood Estates", false], ["address", "1450 Bull St", false], ["city", "Columbia, SC 29201", false], ["effective", "2026-09-01", true]],
+    right: [["operator", "Ridgeline Care Group", true], ["name", "Thistlewood Estates", false], ["address", "1450 Bull St", false], ["city", "Columbia, SC 29201", false], ["effective", "2024-03-15", true]],
+    signals: [["Name similarity", "1.00"], ["Street match", "exact"], ["Operator match", "none"], ["Open AR", "$26.4k"]],
+    writes: [["ACC-22615", "Operating", "Closed — CHOW (preserved)"], ["new account", "—", "create under Vantage Senior Partners"], ["relationship", "—", "ACC-22615 → new (CHOW, 2026-09-01)"], ["AR balance", "$26.4k", "stays on ACC-22615"]]
+  },
+  {
+    id: "p-1048", type: "chow", name: "Braemar Court", where: "Savannah, GA", crmId: "ACC-18220", score: 0.83,
+    hint: "operator changed, no AR",
+    rule: "Prior account has no 12-month revenue and no open AR, so the site is re-parented to the incoming operator in place. No new account is created.",
+    left: [["operator", "Coastal Living Co.", true], ["name", "Braemar Court", false], ["address", "12 Abercorn St", false], ["city", "Savannah, GA 31401", false], ["effective", "2026-08-15", true]],
+    right: [["operator", "Harborlight Mgmt", true], ["name", "Braemar Court", false], ["address", "12 Abercorn St", false], ["city", "Savannah, GA 31401", false], ["effective", "2023-11-02", true]],
+    signals: [["Name similarity", "1.00"], ["Street match", "exact"], ["Operator match", "none"], ["Open AR", "$0"]],
+    writes: [["parent_id", "Harborlight Mgmt", "Coastal Living Co."], ["chow_date", "—", "2026-08-15"]]
+  },
+  {
+    id: "p-1049", type: "confident", name: "Stonebrook Village", where: "Athens, GA", crmId: "ACC-16092", score: 0.96,
+    hint: "address + name agree",
+    left: [["name", "Stonebrook Village", false], ["address", "255 Barnett Shoals Rd", false], ["city", "Athens, GA 30605", false], ["phone", "(706) 555-0133", false], ["status", "Operating", true]],
+    right: [["name", "Stonebrook Village", false], ["address", "255 Barnett Shoals Rd", false], ["city", "Athens, GA 30605", false], ["phone", "(706) 555-0133", false], ["status", "Pending", true]],
+    signals: [["Name similarity", "1.00"], ["Street match", "exact"], ["ZIP match", "exact"], ["Distance", "0.0 mi"]],
+    writes: [["status", "Pending", "Operating"], ["last_verified", "2026-07-11", "2026-09-19"]]
+  },
+  {
+    id: "p-1050", type: "location", name: "Fairhaven Gardens — Annex", where: "Birmingham, AL", crmId: "no match", score: 0.44,
+    hint: "0.6 mi from ACC-13355",
+    left: [["name", "Fairhaven Gardens Annex", false], ["address", "3012 Highland Ave", false], ["city", "Birmingham, AL 35205", false], ["phone", "(205) 555-0198", false], ["status", "Operating", false]],
+    right: [["name", "—", false], ["address", "—", false], ["city", "—", false], ["phone", "—", false], ["status", "—", false]],
+    signals: [["Name similarity", "0.67"], ["Street match", "none"], ["ZIP match", "exact"], ["Nearest CRM site", "0.6 mi"]],
+    writes: [["account", "—", "create new"], ["parent_id", "—", "ACC-13355 (Fairhaven Gardens)"], ["source", "—", "website crawl 09-19"]]
+  }
+];
+
+const ORDER = ["all", "confident", "fix", "location", "orphan", "chow"];
+
+const TITLES = {
+  confident: p => `Field updates to “${p.name}”`,
+  fix: p => `Record correction for “${p.name}”`,
+  location: p => `New location — ${p.name}`,
+  orphan: p => `Deactivate “${p.name}” (unverified)`,
+  chow: p => `Change of ownership — “${p.name}”`
+};
+
+const HISTORY = [
+  { id: "h-1032", type: "confident", name: "Willow Bend Residences", where: "Durham, NC", crmId: "ACC-15220", status: "completed", when: "Sep 18, 2026", by: "Run #0418", note: "2 fields written" },
+  { id: "h-1033", type: "chow", name: "Kestrel Grove", where: "Augusta, GA", crmId: "ACC-21044", status: "completed", when: "Sep 18, 2026", by: "Run #0418", note: "New account created, AR preserved" },
+  { id: "h-1034", type: "location", name: "Hollis Park — North", where: "Raleigh, NC", crmId: "ACC-31881", status: "completed", when: "Sep 17, 2026", by: "Run #0417", note: "Account created under ACC-19771" },
+  { id: "h-1035", type: "fix", name: "Ambler Court", where: "Jackson, MS", crmId: "ACC-17305", status: "declined", when: "Sep 17, 2026", by: "Run #0417", note: "Website listing is stale — CRM is correct" },
+  { id: "h-1036", type: "orphan", name: "Foxglove Terrace", where: "Tupelo, MS", crmId: "ACC-12994", status: "declined", when: "Sep 16, 2026", by: "Run #0416", note: "Site temporarily offline, not closed" },
+  { id: "h-1037", type: "confident", name: "Saltmarsh Commons", where: "Charleston, SC", crmId: "ACC-18461", status: "completed", when: "Sep 16, 2026", by: "Run #0416", note: "1 field written" }
+];
+
+const STATUS = {
+  open: { label: "Pending review", bg: "#FAF0DC", ink: "#7A5F22" },
+  completed: { label: "Approved", bg: "#E7EFE9", ink: "#2C6B55" },
+  declined: { label: "Declined", bg: "#F3EAE6", ink: "#8A5544" }
+};
+
+class Component extends DCLogic {
+  state = { view: "home", homeBucket: "review", allRequestsExpanded: true, filter: "all", sel: "p-1041", picked: {}, decided: {}, rail: true, w: typeof window === "undefined" ? 1440 : window.innerWidth };
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener("resize", this._onResize);
+    this._onResize();
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this._onResize);
+    this.stopResize();
+  }
+
+  startResize = e => {
+    e.preventDefault();
+    if (!this.state.rail) this.setState({ rail: true });
+    this._move = ev => {
+      const w = Math.max(176, Math.min(420, ev.clientX));
+      this.setState({ railPx: w });
+    };
+    this._up = () => this.stopResize();
+    document.body.style.cursor = "col-resize";
+    document.body.style.userSelect = "none";
+    window.addEventListener("mousemove", this._move);
+    window.addEventListener("mouseup", this._up);
+  };
+
+  stopResize() {
+    if (this._move) window.removeEventListener("mousemove", this._move);
+    if (this._up) window.removeEventListener("mouseup", this._up);
+    this._move = null; this._up = null;
+    document.body.style.cursor = "";
+    document.body.style.userSelect = "";
+  }
+
+  accent() { return this.props.accentColor || "#175E4C"; }
+
+  pool() {
+    const { filter, decided } = this.state;
+    return DATA.filter(p => !decided[p.id] && (filter === "all" || p.type === filter));
+  }
+
+  count(k) {
+    const { decided } = this.state;
+    return DATA.filter(p => !decided[p.id] && (k === "all" || p.type === k)).length;
+  }
+
+  decide(id, how) {
+    this.setState(s => {
+      const decided = { ...s.decided, [id]: how };
+      const next = DATA.find(p => !decided[p.id] && (s.filter === "all" || p.type === s.filter));
+      const picked = { ...s.picked }; delete picked[id];
+      return { decided, picked, sel: next ? next.id : s.sel };
+    });
+  }
+
+  fieldRows(rows) {
+    return (rows || []).map(([label, value, changed]) => ({
+      label, value,
+      bg: changed ? "#FBF7EC" : "transparent",
+      ink: changed ? "#1C1A17" : "#5C564E"
+    }));
+  }
+
+  layoutVals() {
+    const s = this.state;
+    const MIN_LIST = 340;
+    const railPx = s.rail ? (s.railPx ?? 260) : (this.props.railCollapsedWidth ?? 64);
+    const pad = s.w < 760 ? 18 : (this.props.pageMargin ?? 76);
+    const avail = Math.max(240, s.w - railPx - pad * 2);
+    let fw = this.props.filterWidth ?? 158;
+    let gap = this.props.columnGap ?? 34;
+    const shiftReq = this.props.contentShift ?? 0;
+    const oneCol = avail < fw + MIN_LIST + 24;
+
+    if (oneCol) {
+      return { homeCols: "minmax(0, 1fr)", colGap: "24px", contentShift: "0 auto", homeRowCols: "minmax(0, 1fr)", homeRowAlign: "flex-start", mainPadX: pad + "px" };
+    }
+    gap = Math.min(gap, Math.max(16, avail - fw - MIN_LIST));
+    const slack = Math.max(0, avail - fw - gap - MIN_LIST);
+    const mag = Math.min(Math.abs(shiftReq), slack);
+    const shift = shiftReq >= 0 ? `0 auto 0 ${mag}px` : `0 ${mag}px 0 auto`;
+    const listW = avail - fw - gap - mag;
+    return {
+      homeCols: `minmax(110px, ${fw}px) minmax(0, 1fr)`,
+      colGap: gap + "px",
+      contentShift: shift,
+      homeRowCols: listW < 460 ? "minmax(0, 1fr)" : "minmax(0, 1fr) auto",
+      homeRowAlign: listW < 460 ? "flex-start" : "flex-end",
+      mainPadX: pad + "px"
+    };
+  }
+
+  homeVals() {
+    const s = this.state;
+    const accent = this.accent();
+    const row = (p, status, meta, note) => {
+      const ty = TYPES[p.type];
+      const st = STATUS[status];
+      return {
+        title: TITLES[p.type](p),
+        meta, note,
+        where: `${p.where} · ${p.crmId}`,
+        typeLabel: ty.label, tagBg: ty.tagBg, tagInk: ty.tagInk,
+        statusLabel: st.label, statusBg: st.bg, statusInk: st.ink,
+        open: () => this.setState({ view: "queue", filter: "all", sel: p.id })
+      };
+    };
+
+    const open = DATA.filter(p => !s.decided[p.id]).map(p => row(p, "open", "Run #0419 · Sep 19, 2026", p.hint));
+    const sessionDone = st => DATA.filter(p => s.decided[p.id] === st)
+      .map(p => row(p, st === "approved" ? "completed" : "declined", "Run #0419 · Sep 19, 2026", st === "approved" ? `${p.writes.length} fields written` : "Declined by you this session"));
+    const hist = st => HISTORY.filter(h => h.status === st).map(h => row(h, st, `${h.by} · ${h.when}`, h.note));
+
+    const completed = [...sessionDone("approved"), ...hist("completed")];
+    const declined = [...sessionDone("rejected"), ...hist("declined")];
+    const buckets = [
+      { key: "open", label: "Open", rows: open },
+      { key: "completed", label: "Completed", rows: completed },
+      { key: "declined", label: "Closed", rows: declined }
+    ];
+    const allRows = [...open, ...completed, ...declined];
+    const reviewSelected = s.homeBucket === "review";
+    const allSelected = s.homeBucket === "all";
+    const active = reviewSelected ? { label: "Requests to review", rows: open }
+      : allSelected ? { label: "All requests", rows: allRows }
+      : buckets.find(b => b.key === s.homeBucket) || buckets[0];
+
+    return {
+      reviewSelected,
+      reviewCount: String(open.length),
+      reviewBg: reviewSelected ? "#F6F3EC" : "transparent",
+      reviewInk: reviewSelected ? "#1C1A17" : "#5C564E",
+      reviewWeight: reviewSelected ? 500 : 400,
+      reviewBar: reviewSelected ? accent : "transparent",
+      goReviewRequests: () => this.setState({ homeBucket: "review" }),
+      allRequestsCount: String(allRows.length),
+      allRequestsExpanded: s.allRequestsExpanded,
+      allRequestsBg: allSelected ? "#F6F3EC" : "transparent",
+      allRequestsInk: allSelected ? "#1C1A17" : "#5C564E",
+      allRequestsWeight: allSelected ? 500 : 400,
+      allRequestsBar: allSelected ? accent : "transparent",
+      allRequestsChevron: s.allRequestsExpanded ? "rotate(90deg)" : "rotate(0deg)",
+      requestStatusesDisplay: s.allRequestsExpanded ? "block" : "none",
+      toggleAllRequests: () => this.setState(state => ({
+        homeBucket: "all", allRequestsExpanded: !state.allRequestsExpanded
+      })),
+      homeBuckets: buckets.map(b => {
+        const on = b.key === s.homeBucket;
+        return {
+          label: b.label, count: String(b.rows.length), selected: on,
+          bg: on ? "#F6F3EC" : "transparent",
+          ink: on ? "#1C1A17" : "#5C564E",
+          weight: on ? 500 : 400,
+          bar: on ? accent : "transparent",
+          go: () => this.setState({ homeBucket: b.key })
+        };
+      }),
+      homeTypeFilters: ORDER.filter(k => k !== "all").map(k => ({
+        label: TYPES[k].label,
+        count: String(DATA.filter(p => p.type === k && !s.decided[p.id]).length),
+        go: () => this.setState({ view: "queue", filter: k })
+      })),
+      homeTitle: active.label,
+      homeCount: `(${active.rows.length})`,
+      homeRows: active.rows,
+      homeEmpty: active.rows.length === 0,
+      homeEmptyNote: ["review", "open"].includes(s.homeBucket) ? "Queue is clear. Next run is at 6:02 AM tomorrow." : "Nothing here yet.",
+      goQueueAll: () => this.setState({ view: "queue", filter: "all" })
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const accent = this.accent();
+    const pool = this.pool();
+    const sel = DATA.find(p => p.id === s.sel) || pool[0] || DATA[0];
+    const t = TYPES[sel.type];
+    const pickedIds = Object.keys(s.picked).filter(k => s.picked[k]);
+    const bulkOk = this.props.bulkApprove !== false;
+    const decidedCount = Object.keys(s.decided).length;
+
+    const route = s.view;
+    const item = (key, count) => ({
+      count: count === undefined ? "" : String(count),
+      ink: route === key ? "#1C1A17" : "#5C564E",
+      bg: route === key ? "#EFEAE0" : "transparent",
+      weight: route === key ? 500 : 400,
+      go: () => this.setState({ view: key })
+    });
+
+    const narrow = s.w < 1120;
+
+    return {
+      splitCols: narrow ? "minmax(0, 1fr)" : "minmax(300px, 380px) minmax(0, 1fr)",
+      ...this.layoutVals(),
+      sectionTop: (this.props.sectionTop ?? 52) + "px",
+      logoPx: (this.props.logoSize ?? 22) + "px",
+      topBarH: (this.props.topBarHeight ?? 52) + "px",
+      topBarPadX: (this.props.topBarPadX ?? 16) + "px",
+      railH: `calc(100vh - ${this.props.topBarHeight ?? 52}px)`,
+      titlePx: (this.props.titleSize ?? 16) + "px",
+      titleIconPx: this.props.titleIconSize ?? 17,
+      rowPad: `${this.props.rowPadY ?? 12}px 18px`,
+      n: {
+        home: item("home", 3),
+        runs: item("run", 6),
+        sources: item("sources", 12),
+        settings: item("settings"),
+        queue: item("queue", this.count("all")),
+        accounts: item("accounts")
+      },
+      railW: s.rail ? (s.railPx ?? 260) + "px" : (this.props.railCollapsedWidth ?? 64) + "px",
+      startResize: this.startResize,
+      navPadX: s.rail ? "14px" : (this.props.railCollapsedPad ?? 8) + "px",
+      navGap: (this.props.navIconGap ?? 10) + "px",
+      navItemPad: `0 ${this.props.navItemPadX ?? 10}px`,
+      logoIdle: !s.logoHover,
+      logoVisible: !s.logoHover && (this.props.showLogo ?? true),
+      logoHover: !!s.logoHover,
+      logoIn: () => this.setState({ logoHover: true }),
+      logoOut: () => this.setState({ logoHover: false }),
+      labelDisplay: s.rail ? "block" : "none",
+      workspaceTop: s.rail ? "18px" : "auto",
+      toggleRail: () => this.setState(st => ({ rail: !st.rail })),
+      lastRunWhen: "Today, 6:02 AM",
+      lastRunSummary: "1,284 sites · 10 proposals",
+
+      sectionLabel: { home: "Home", run: "Runs", queue: "Review queue", accounts: "Accounts", sources: "Sources", settings: "Settings" }[s.view] || "Home",
+      isHome: s.view === "home",
+      isQueue: s.view !== "run" && s.view !== "home",
+      isRun: s.view === "run",
+      ...this.homeVals(),
+      goQueue: () => this.setState({ view: "queue" }),
+
+      queueSubhead: decidedCount
+        ? `${pool.length} awaiting review · ${decidedCount} decided this session`
+        : `${pool.length} proposals from this morning's run. High-risk types need individual approval.`,
+
+      chips: ORDER.map(k => {
+        const on = s.filter === k;
+        const label = k === "all" ? "All" : TYPES[k].label;
+        return {
+          label, count: String(this.count(k)),
+          bg: on ? "#EFEAE0" : "#FDFCF8",
+          border: on ? "#C3BBAA" : "#E6E0D4",
+          ink: on ? "#1C1A17" : "#5C564E",
+          go: () => this.setState({ filter: k })
+        };
+      }),
+
+      visible: pool.map(p => {
+        const ty = TYPES[p.type];
+        const on = p.id === sel.id;
+        const isPicked = !!s.picked[p.id];
+        return {
+          name: p.name, where: `${p.where} · ${p.crmId}`, hint: p.hint,
+          typeLabel: ty.label, tagBg: ty.tagBg, tagInk: ty.tagInk,
+          scoreText: p.score.toFixed(2),
+          scoreInk: p.score >= 0.85 ? "#2C6B55" : p.score >= 0.6 ? "#8A6D2B" : "#A79E90",
+          cardBg: on ? "#FDFCF8" : "#FBF9F4",
+          cardBorder: on ? accent : "#E6E0D4",
+          shadow: on ? "0 1px 3px rgba(28,26,23,0.06)" : "none",
+          boxBorder: isPicked ? accent : "#C3BBAA",
+          boxBg: isPicked ? accent : "transparent",
+          check: isPicked ? "✓" : "",
+          select: () => this.setState({ sel: p.id }),
+          toggle: e => { e.stopPropagation(); this.setState(st => ({ picked: { ...st.picked, [p.id]: !st.picked[p.id] }, sel: p.id })); }
+        };
+      }),
+      queueEmpty: pool.length === 0,
+
+      showBulk: bulkOk && pickedIds.length > 0,
+      bulkLabel: `Approve ${pickedIds.length} selected`,
+      selectAllLabel: pickedIds.length ? "Clear selection" : "Select confident matches",
+      toggleSelectAll: () => this.setState(st => {
+        if (Object.values(st.picked).some(Boolean)) return { picked: {} };
+        const picked = {};
+        this.pool().filter(p => p.type === "confident").forEach(p => { picked[p.id] = true; });
+        return { picked };
+      }),
+      approveSelected: () => this.setState(st => {
+        const decided = { ...st.decided };
+        Object.keys(st.picked).filter(k => st.picked[k]).forEach(k => { decided[k] = "approved"; });
+        const next = DATA.find(p => !decided[p.id] && (st.filter === "all" || p.type === st.filter));
+        return { decided, picked: {}, sel: next ? next.id : st.sel };
+      }),
+
+      d: {
+        name: sel.name, where: sel.where, crmId: sel.crmId,
+        typeLabel: t.label, typeInk: t.tagInk,
+        scoreText: sel.score.toFixed(2),
+        scoreInk: sel.score >= 0.85 ? "#2C6B55" : sel.score >= 0.6 ? "#8A6D2B" : "#A79E90",
+        scoreCaption: sel.score >= 0.85 ? "auto-approvable" : "needs a human",
+        hasRule: !!sel.rule, rule: sel.rule || "",
+        leftTitle: "Website says", leftMeta: "crawl · 09-19 06:02",
+        rightTitle: "CRM says", rightMeta: sel.crmId,
+        left: this.fieldRows(sel.left),
+        right: this.fieldRows(sel.right),
+        signals: sel.signals.map(([label, value]) => {
+          const n = parseFloat(value);
+          const pct = value === "exact" || value === "1.00" ? 100 : value === "partial" ? 55 : value === "none" ? 8 : isNaN(n) ? 30 : Math.min(100, Math.round(n * 100));
+          return { label, value, width: pct + "%", fill: pct > 70 ? t.fill : "#C3BBAA" };
+        }),
+        writes: sel.writes.map(([field, from, to]) => ({ field, from, to })),
+        decidedNote: decidedCount ? `${decidedCount} decided · ${pool.length} left` : `${pool.length} in queue`
+      },
+
+      approveOne: () => this.decide(sel.id, "approved"),
+      rejectOne: () => this.decide(sel.id, "rejected"),
+      skipOne: () => {
+        const i = pool.findIndex(p => p.id === sel.id);
+        const next = pool[(i + 1) % pool.length];
+        if (next) this.setState({ sel: next.id });
+      },
+
+      runHeadline: "Run #0419 · today 6:02 AM · completed in 4m 18s",
+      runStats: [
+        { value: "1,284", label: "Sites crawled", ink: "#1C1A17" },
+        { value: "1,271", label: "Matched automatically", ink: "#2C6B55" },
+        { value: "10", label: "Queued for review", ink: "#8A6D2B" },
+        { value: "3", label: "Errors", ink: "#A5402C" }
+      ],
+      runBreakdown: ORDER.filter(k => k !== "all").map(k => {
+        const c = DATA.filter(p => p.type === k).length;
+        return { label: TYPES[k].label, count: String(c), width: Math.round((c / 4) * 100) + "%", fill: TYPES[k].fill };
+      }),
+      runStages: [
+        { mark: "✓", ink: "#2C6B55", label: "Crawl operator sites", detail: "1,284 pages", time: "2m 04s" },
+        { mark: "✓", ink: "#2C6B55", label: "Normalize + geocode", detail: "1,281 resolved", time: "51s" },
+        { mark: "✓", ink: "#2C6B55", label: "Match against CRM", detail: "1,271 confident", time: "38s" },
+        { mark: "✓", ink: "#2C6B55", label: "Apply CHOW rules", detail: "2 flagged", time: "12s" },
+        { mark: "!", ink: "#A5402C", label: "Write approved changes", detail: "3 failed — retry queued", time: "33s" }
+      ],
+      runCta: `Review ${pool.length} proposals`
+    };
+  }
+}
+
+</script>
+
+
+</body></html>

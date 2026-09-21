@@ -1,0 +1,9 @@
+#crm-settings[hidden] { display:none !important; }
+#crm-settings { width:100%; padding-bottom:24px; color:#242421; font-size:14px; }
+.settings-card { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:16px; border:1px solid #e7e6e2; border-radius:5px; background:#fff; }
+.settings-card-copy { min-width:0; }
+.settings-card h2 { margin:0; font-size:14px; font-weight:500; line-height:21px; }
+.settings-card p { margin:5px 0 0; color:#97958d; font-size:13px; line-height:20px; }
+#settings-reset-button { flex-shrink:0; }
+#settings-reset-button:focus-visible { outline:2px solid #b7cfdf; outline-offset:3px; }
+@media (max-width:480px) { .settings-card { flex-wrap:wrap; gap:16px; } }

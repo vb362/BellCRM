@@ -1,0 +1,19 @@
+<section id="crm-settings" hidden aria-label="Settings">
+  <div class="settings-card">
+    <div class="settings-card-copy">
+      <h2>Reset test mode</h2>
+      <p>Go back to the initial data set.</p>
+    </div>
+    <button id="settings-reset-button" type="button" class="runs-primary" aria-haspopup="dialog">Reset</button>
+  </div>
+</section>
+<dialog id="settings-reset-dialog" class="runs-dialog" aria-labelledby="settings-reset-title" aria-describedby="settings-reset-description">
+  <form method="dialog">
+    <h2 id="settings-reset-title">Are you sure you want to reset?</h2>
+    <p id="settings-reset-description">This will roll back all your progress.</p>
+    <div class="runs-dialog-actions">
+      <button type="submit" value="no" class="runs-secondary" autofocus>No</button>
+      <button type="submit" value="yes" class="runs-primary">Yes</button>
+    </div>
+  </form>
+</dialog>

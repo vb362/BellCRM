@@ -1,0 +1,33 @@
+# Working databases are local; the prepared demo baseline is included.
+*.sqlite
+!/data/start.sqlite
+*.db
+/data/backups/
+
+# Temporary SQLite files and local credentials.
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+diagnostics/
+
+# Local hosting state, captured design archives, and generated standalone copies.
+**/.openai/
+/mistral-replica/Mistral Studio Replica.html
+/mistral-replica/*verification.json
+/mistral-replica/reference/chunks/
+/mistral-replica/reference/home-design/
+/mistral-replica/reference/original.html
+/mistral-replica/reference/main.html
+/mistral-replica/reference/bellhaven-runtime.js
+/mistral-replica/reference/placeholder-*
+/mistral-replica/reference/*.sha256
+
+# Cross-process production executor lock; no submission data is stored here.
+*.submission.lock

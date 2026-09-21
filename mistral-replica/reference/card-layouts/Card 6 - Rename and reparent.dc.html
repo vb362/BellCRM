@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f2efe9; font-family:Inter, system-ui, sans-serif; color:#242320; -webkit-font-smoothing:antialiased; }
+  a { color:#3f8ecc; text-decoration:none; }
+  a:hover { color:#2f7cc4; text-decoration:underline; }
+</style>
+</helmet>
+
+<section style="display:flex; flex-direction:column; gap:24px; padding:48px 44px 80px;">
+  <div style="display:flex; flex-direction:column; gap:8px; max-width:820px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:#6f685d; font-weight:600;">Type 6</span>
+      <span style="font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:#6f685d; font-weight:500;">Rename + update parent + additional details</span>
+    </div>
+    <h1 style="margin:0; font-size:26px; line-height:34px; font-weight:600; letter-spacing:-.4px;">One card per listing, and you pick which record it lands on</h1>
+    <p style="margin:0; font-size:13px; line-height:21px; color:#77716a; text-wrap:pretty;">Because these match on address alone, several CRM records can qualify — so instead of one competing card per record, there is one card per website listing and a dropdown for the record to apply it to. The change rows recompute from whatever you pick. Kettering is open.</p>
+  </div>
+
+  <div id="1a" style="display:flex; flex-direction:column; gap:10px; max-width:1000px;">
+    <sc-for list="{{ cards }}" as="c" hint-placeholder-count="3">
+      <article style="background:#fff; border:1px solid {{ c.border }}; border-radius:9px; overflow:hidden;">
+        <div onClick="{{ c.onToggle }}" style="padding:15px 17px 13px; cursor:pointer; display:flex; flex-direction:column; gap:13px;" style-hover="background:#fdfcfa;">
+          <div style="display:flex; align-items:flex-start; gap:16px;">
+            <div style="display:flex; flex-direction:column; gap:3px; min-width:0; flex:1;">
+              <span style="font-size:15px; line-height:22px; font-weight:600; color:#3f8ecc; letter-spacing:-.1px;">{{ c.title }}</span>
+              <span style="font-size:12px; line-height:18px; color:#6f685d;">{{ c.subline }}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
+              <button type="button" onClick="{{ c.onApprove }}" style="border:1px solid {{ c.approveBorder }}; background:{{ c.approveBg }}; color:#3b382f; border-radius:5px; padding:4px 10px; font:inherit; font-size:12px; line-height:16px; font-weight:500; cursor:pointer;" style-hover="background:#f5f3ee;">{{ c.approveLabel }}</button>
+              <button type="button" onClick="{{ c.onDecline }}" style="border:1px solid {{ c.declineBorder }}; background:{{ c.declineBg }}; color:#6f685d; border-radius:5px; padding:4px 10px; font:inherit; font-size:12px; line-height:16px; cursor:pointer;" style-hover="background:#f5f3ee; color:#3b382f;">{{ c.declineLabel }}</button>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:118px minmax(0,1fr); gap:9px 10px; align-items:center; font-size:13px; line-height:21px;">
+            <span style="color:#6f685d; font-size:12px;">Update</span>
+            <select value="{{ c.pick }}" onChange="{{ c.onPick }}" onClick="{{ c.stop }}" style="border:1px solid #dedbd4; border-radius:6px; background:#fff; padding:5px 8px; font:inherit; font-size:13px; line-height:20px; color:#242320; cursor:pointer; max-width:100%;">
+              <sc-for list="{{ c.options }}" as="o" hint-placeholder-count="3">
+                <option value="{{ o.id }}">{{ o.text }}</option>
+              </sc-for>
+            </select>
+            <span style="color:#6f685d; font-size:12px;">Mark as inactive</span>
+            <span style="display:flex; flex-wrap:wrap; gap:6px;">
+              <sc-for list="{{ c.others }}" as="o" hint-placeholder-count="2">
+                <button type="button" onClick="{{ o.onToggleInactive }}" style="border:1px solid {{ o.chipBorder }}; background:{{ o.chipBg }}; color:{{ o.chipColor }}; border-radius:14px; padding:3px 10px; font:inherit; font-size:12px; line-height:18px; cursor:pointer;" style-hover="border-color:#b9b3a6;">{{ o.chipLabel }}</button>
+              </sc-for>
+            </span>
+          </div>
+
+          <div style="display:grid; grid-template-columns:118px minmax(0,1fr); gap:10px; align-items:baseline; font-size:13px; line-height:21px;">
+            <span style="color:#6f685d; font-size:12px;">Actions</span>
+            <span style="display:flex; flex-direction:column; gap:3px;">
+              <sc-for list="{{ c.changes }}" as="f" hint-placeholder-count="4">
+                <span style="display:grid; grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr); gap:10px; align-items:baseline;">
+                  <span style="color:#6f685d;">{{ f.line }}</span>
+                  <span style="color:#a39b8e;">{{ f.arrow }}</span>
+                  <span style="font-weight:500;">{{ f.display }}</span>
+                </span>
+              </sc-for>
+            </span>
+          </div>
+
+          <div style="display:grid; grid-template-columns:118px minmax(0,1fr); gap:5px 10px; align-items:baseline; font-size:13px; line-height:21px;">
+            <span style="color:#6f685d; font-size:12px;">Matching logic</span>
+            <span style="color:#57534a;">{{ c.evidenceLine }}</span>
+            <span style="color:#6f685d; font-size:12px;">Rationale</span>
+            <span style="color:#57534a;">{{ c.reason }}</span>
+          </div>
+        </div>
+
+        <sc-if value="{{ c.open }}">
+          <div style="background:#fdfcf9; border-top:1px solid #eeebe4; padding:16px 17px 17px; display:flex; flex-direction:column; gap:18px;">
+            <div style="display:flex; flex-direction:column; gap:9px;">
+              <div style="display:flex; flex-direction:column; gap:2px;">
+                <span style="font-size:13px; line-height:20px; font-weight:600;">Account field updates</span>
+                <span style="font-size:12px; line-height:19px; color:#57534a;">Written to {{ c.pickName }} · {{ c.pick }}. All values from the website listing <a href="{{ c.sourceUrl }}" target="_blank" style="font-size:12px;">source</a>. Edit anything before approving.</span>
+              </div>
+              <sc-for list="{{ c.accountWrites }}" as="f" hint-placeholder-count="4">
+                <div style="display:grid; grid-template-columns:150px minmax(0,0.75fr) 16px minmax(0,1.45fr); gap:10px; align-items:center; font-size:13px; line-height:21px;">
+                  <span style="color:#6f685d; font-size:12px;">{{ f.label }}</span>
+                  <span style="color:#6f685d;">{{ f.from }}</span>
+                  <span style="color:#a39b8e;">→</span>
+                  <input value="{{ f.to }}" onChange="{{ f.onEdit }}" style="border:1px solid #ded9cf; border-radius:6px; background:#fff; padding:4px 8px; font:inherit; font-size:13px; line-height:20px; color:#242320; width:100%; min-width:0; box-sizing:border-box;">
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:9px; border-top:1px solid #eeebe4; padding-top:15px;">
+              <div style="display:flex; flex-direction:column; gap:2px;">
+                <span style="font-size:13px; line-height:20px; font-weight:600;">Contact actions</span>
+                <span style="font-size:12px; line-height:19px; color:#57534a;">One write on the contact object, not the account.</span>
+              </div>
+              <div style="display:grid; grid-template-columns:150px minmax(0,1fr); gap:10px; align-items:center; font-size:13px; line-height:21px;">
+                <span style="color:#6f685d; font-size:12px;">create contact</span>
+                <span style="display:flex; align-items:center; gap:10px; min-width:0;">
+                  <input value="{{ c.newContact }}" onChange="{{ c.onNewContact }}" style="border:1px solid #ded9cf; border-radius:6px; background:#fff; padding:4px 8px; font:inherit; font-size:13px; line-height:20px; color:#242320; flex:1; min-width:0; box-sizing:border-box;">
+                  <span style="font-size:12px; color:#6f685d; flex-shrink:0;">Title Administrator, active</span>
+                </span>
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:9px; border-top:1px solid #eeebe4; padding-top:15px;">
+              <span style="font-size:13px; line-height:20px; font-weight:600;">{{ c.otherHead }}</span>
+              <sc-for list="{{ c.others }}" as="o" hint-placeholder-count="2">
+                <div style="display:grid; grid-template-columns:150px minmax(0,1fr); gap:10px; align-items:baseline; font-size:13px; line-height:21px;">
+                  <span style="color:#6f685d; font-size:12px;">{{ o.account }}</span>
+                  <span style="color:#57534a;">{{ o.text }}</span>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="border-top:1px solid #eeebe4; padding-top:15px; display:grid; grid-template-columns:150px minmax(0,1fr); gap:9px 10px; align-items:baseline; font-size:13px; line-height:21px;">
+              <span style="color:#6f685d; font-size:12px;">Link</span>
+              <span><a href="{{ c.crmUrl }}" target="_blank" style="color:#3f8ecc;">CRM record</a></span>
+            </div>
+          </div>
+        </sc-if>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1100,&quot;height&quot;:780}}">
+class Component extends DCLogic {
+  state = { open: 'kettering', pick: {}, edits: {}, decisions: {}, inactive: {} };
+
+  decide(id, choice, e) {
+    e.stopPropagation();
+    this.setState(s => ({ decisions: { ...s.decisions, [id]: s.decisions[id] === choice ? null : choice } }));
+  }
+
+  titleFor(writes, name) {
+    const has = key => writes.some(f => f.key === key);
+    if (has('name') && has('parent_name')) return 'Change of ownership with rebrand - Multiple facilities at same address - No financial data';
+    if (has('name')) return 'Rename and Update ' + name;
+    if (has('parent_name')) return 'Update Parent and Details on ' + name;
+    return 'Update Information on ' + name;
+  }
+
+  data() {
+    return [
+      {
+        id: 'kettering',
+        address: '3313 Wilmington Pike, Kettering, OH 45429',
+        webName: 'Bellhaven of Kettering',
+        webPhone: '(231) 269-5449',
+        webCare: 'Short-Term Rehabilitation & Nursing',
+        administrator: 'Priya Ashby',
+        sourceUrl: 'https://analyst-assessment-production.up.railway.app/communities/bellhaven-of-kettering',
+        candidates: [
+          { id: '001WR41PYNWXCAE2X4', name: 'Kettering Care Centre', parent: 'Harborview Care Group (Parent Account)', phone: '(419) 600-2603', care: 'Skilled Nursing' },
+          { id: '001B7XZAA3AFALS9GP', name: 'Kettering Senior Campus', parent: 'Cedar Trail Communities (Parent Account)', phone: '(517) 646-8751', care: 'Skilled Nursing' },
+          { id: '0016KTS1UAWBRXS09J', name: 'Kettering Nursing & Rehabilitation', parent: 'No parent on file', phone: '(216) 345-3441', care: 'Skilled Nursing' }
+        ]
+      },
+      {
+        id: 'erie',
+        address: '4930 W Lake Rd, Erie, PA 16505',
+        webName: 'Bellhaven Shores of Erie',
+        webPhone: '(614) 792-9343',
+        webCare: 'Assisted Living; Memory Support',
+        administrator: 'Angela Quinn',
+        sourceUrl: 'https://analyst-assessment-production.up.railway.app/communities/bellhaven-shores-of-erie',
+        candidates: [
+          { id: '001BLYF02K97SZLZHH', name: 'Harborview Shores of Erie', parent: 'Harborview Care Group (Parent Account)', phone: '(517) 775-8456', care: 'Assisted Living' },
+          { id: '001CVBBCSDM7YHN220', name: 'Bellhaven Shores of Erie', parent: 'Bellhaven Senior Living (Parent Account)', phone: '(419) 495-1741', care: 'Assisted Living' }
+        ]
+      },
+      {
+        id: 'monroe',
+        address: '750 Stewart Rd, Monroe, MI 48162',
+        webName: 'Bellhaven Gardens of Monroe',
+        webPhone: '(814) 412-2218',
+        webCare: 'Assisted Living',
+        administrator: 'Phil Mabry',
+        sourceUrl: 'https://analyst-assessment-production.up.railway.app/communities/bellhaven-gardens-of-monroe',
+        candidates: [
+          { id: '00159PL81N38KM4FHM', name: 'Monroe Gardens Care Center', parent: 'Harborview Care Group (Parent Account)', phone: '(330) 501-4496', care: 'Assisted Living' },
+          { id: '0011AB44D05WLA9HTX', name: 'Cedar Trail of Monroe', parent: 'Cedar Trail Communities (Parent Account)', phone: '(216) 748-7799', care: 'Assisted Living' },
+          { id: '001U1750VLVJAGG1S5', name: 'Bellhaven Gardens of Monroe', parent: 'Bellhaven Senior Living (Parent Account)', phone: '(814) 291-2902', care: 'Assisted Living' }
+        ]
+      }
+    ];
+  }
+
+  renderVals() {
+    const { open, pick, edits, decisions, inactive } = this.state;
+    const bell = 'Bellhaven Senior Living (Parent Account)';
+    const cards = this.data().map(c => {
+      const isOpen = open === c.id;
+      const decision = decisions[c.id] || null;
+      const picked = pick[c.id] || c.candidates[0].id;
+      const rec = c.candidates.find(a => a.id === picked);
+      const correct = rec.name === c.webName && rec.parent === bell;
+      const raw = [
+        { key: 'name', label: 'name', from: rec.name, to: c.webName },
+        { key: 'parent_name', label: 'parent_name', from: rec.parent, to: bell },
+        { key: 'phone', label: 'phone', from: rec.phone, to: c.webPhone },
+        { key: 'care_type', label: 'care_type', from: rec.care, to: c.webCare }
+      ].filter(f => f.from !== f.to);
+      const writes = raw.map(f => {
+        const k = c.id + ':' + picked + ':' + f.key;
+        return {
+          ...f,
+          to: edits[k] != null ? edits[k] : f.to,
+          onEdit: e => this.setState(s => ({ edits: { ...s.edits, [k]: e.target.value } }))
+        };
+      });
+      const labels = { name: 'Name', parent_name: 'Parent', phone: 'Phone', care_type: 'Care offerings' };
+      const others = c.candidates.filter(a => a.id !== picked).map(a => {
+        const key = c.id + ':inactive:' + a.id;
+        const checked = !!inactive[key];
+        return {
+          account: a.id,
+          name: a.name,
+          checked,
+          chipLabel: (checked ? '✓ ' : '') + a.name,
+          chipBorder: checked ? '#b9b3a6' : '#e4e1da',
+          chipBg: checked ? '#eceee7' : 'transparent',
+          chipColor: checked ? '#3b382f' : '#6f685d',
+          text: a.name + ' · ' + (a.parent === bell ? 'already under Bellhaven' : a.parent.replace(' (Parent Account)', '')) + ' — ' + (checked ? 'status Active → Inactive' : 'untouched'),
+          onToggleInactive: () => this.setState(s => ({ inactive: { ...s.inactive, [key]: !s.inactive[key] } }))
+        };
+      });
+      const deactivations = others.filter(o => o.checked);
+      return {
+        ...c,
+        pick: picked,
+        pickName: rec.name,
+        options: c.candidates.map(a => ({
+          id: a.id,
+          text: a.name + ' · ' + (a.parent === bell ? 'Bellhaven Senior Living' : a.parent.replace(' (Parent Account)', '')) + (a.name === c.webName && a.parent === bell ? ' — already correct' : '')
+        })),
+        title: this.titleFor(writes, rec.name),
+        subline: c.address + ' · ' + c.candidates.length + ' CRM records at this address',
+        changes: writes.map(f => ({
+          line: (labels[f.key] || f.label) + ' — ' + f.from,
+          arrow: '→',
+          display: f.to
+        })).concat([{ line: 'Administrator — no administrator on file', arrow: '', display: 'Add ' + c.administrator }])
+          .concat(deactivations.map(o => ({ line: 'Status — ' + o.name, arrow: '→', display: 'Inactive' }))),
+        accountWrites: writes,
+        evidenceLine: correct
+          ? 'This record already carries the website name and parent — nothing to rename, only the remaining details differ.'
+          : 'Addresses match, but names differ or CRM name is missing, CRM parent differs or is missing, both lifetime revenue and outstanding AR are zero.',
+        reason: 'This is likely an ownership change with a rebrand. The address matches, but the name and parent differ. Because both lifetime revenue and outstanding AR are zero, no separate CHOW account is required; the existing record can carry the current name and parent. Multiple records share these matching details, so this interpretation depends on confirming that this is the corresponding account.',
+        newContact: edits[c.id + ':contact'] != null ? edits[c.id + ':contact'] : c.administrator,
+        onNewContact: e => this.setState(s => ({ edits: { ...s.edits, [c.id + ':contact']: e.target.value } })),
+        otherHead: others.length === 1 ? 'The other record at this address' : 'The other records at this address',
+        others,
+        crmUrl: 'https://analyst-assessment-production.up.railway.app/crm/bh_otLzIlpPQ3qmR3xTQ8VjVQ/accounts/' + picked,
+        open: isOpen,
+        border: isOpen ? '#d8d3c8' : '#e4e1da',
+        approveLabel: decision === 'approve' ? 'Approved' : 'Approve',
+        declineLabel: decision === 'decline' ? 'Declined' : 'Decline',
+        approveBg: decision === 'approve' ? '#eceee7' : 'transparent',
+        declineBg: decision === 'decline' ? '#eceee7' : 'transparent',
+        approveBorder: decision === 'approve' ? '#b9b3a6' : '#dedbd4',
+        declineBorder: decision === 'decline' ? '#b9b3a6' : '#e7e4dd',
+        stop: e => e.stopPropagation(),
+        onPick: e => { e.stopPropagation(); const v = e.target.value; this.setState(s => ({ pick: { ...s.pick, [c.id]: v } })); },
+        onApprove: e => this.decide(c.id, 'approve', e),
+        onDecline: e => this.decide(c.id, 'decline', e),
+        onToggle: () => this.setState({ open: isOpen ? null : c.id })
+      };
+    });
+    return { cards };
+  }
+}
+
+</script>
+</body>
+</html>

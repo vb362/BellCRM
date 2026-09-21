@@ -1,0 +1,16 @@
+[data-visual-state="collapsed"] [data-sidebar="footer"] { padding:12px 0; align-items:center; justify-content:center; }
+[data-visual-state="collapsed"] [data-sidebar="footer"] [data-sidebar="group"] { display:none; }
+[data-visual-state="collapsed"] [aria-label="Ouvrir le menu du compte"] { width:48px; height:48px; margin-inline:auto; padding:0; justify-content:center; }
+[data-visual-state="collapsed"] [aria-label="Ouvrir le menu du compte"] > div { justify-content:center; }
+[data-visual-state="collapsed"] [aria-label="Ouvrir le menu du compte"] .grid { display:none; }
+
+[data-visual-state="collapsed"] [data-crm-app-label] { display:none; }
+
+/* Match the original prompt card footprint and hover/focus reveal. */
+#sidebar-run-title { font-size:14px; line-height:20px; }
+.sidebar-run-progress-row { display:flex; align-items:center; gap:8px; margin:2px 0 6px; }
+.sidebar-run-track { height:5px; flex:1; min-width:0; overflow:hidden; border-radius:999px; background:rgba(0,0,0,.09); }
+#sidebar-run-fill { display:block; width:0%; height:100%; border-radius:inherit; background:#171717; transition:width .5s linear; }
+#sidebar-run-percent { min-width:30px; text-align:right; font-size:11px; line-height:16px; font-variant-numeric:tabular-nums; color:var(--text-muted, #737373); }
+#sidebar-run-step { min-height:16px; overflow-wrap:anywhere; }
+@media (prefers-reduced-motion:reduce) { #sidebar-run-fill { transition:none; } }

@@ -1,0 +1,27 @@
+.crm-row-list { display:flex; flex-direction:column; gap:4px; }
+/* Original controls retain layout while native sticky copies render in the host. */
+[data-crm-hosted] { visibility:hidden; pointer-events:none; }
+.crm-row {
+  display:flex; align-items:center; gap:20px; width:100%; margin:0;
+  padding:20px; border:1px solid transparent; border-radius:8px;
+  background:transparent; color:#201f1c; font:inherit; font-family:Inter,system-ui,sans-serif; text-align:left;
+  cursor:pointer; transition:background-color 300ms, border-color 300ms;
+}
+.crm-row:hover, .crm-row:focus-visible {
+  background:#fff; border-color:rgba(0,0,0,.15); outline:none;
+}
+.crm-row:focus-visible { outline:2px solid #b7cfdf; outline-offset:2px; }
+.crm-row-icon { display:flex; flex-shrink:0; transition:color 300ms; }
+.crm-row-icon svg { width:19.2px; height:19.2px; }
+.crm-row:hover .crm-row-icon, .crm-row:focus-visible .crm-row-icon { color:#fa500f; }
+.crm-row-copy { display:flex; flex:1; flex-direction:column; min-width:0; gap:4px; }
+.crm-row-title { font-size:16.8px; font-weight:500; line-height:24px; text-wrap:pretty; }
+.crm-row-description { color:#928f86; font-size:16.8px; line-height:24px; }
+.crm-row-meta { color:#928f86; font-size:14.4px; line-height:21.6px; overflow-wrap:anywhere; }
+.crm-row-tags { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.crm-row-type { font-family:'DM Mono',monospace; font-size:12px; line-height:19.2px; letter-spacing:.04em; text-transform:uppercase; padding:2px 6px; border-radius:4px; }
+.crm-row-status { font-size:13.2px; line-height:19.2px; padding:2px 8px; border-radius:999px; }
+.crm-row-arrow { width:14.4px; height:14.4px; flex-shrink:0; color:#fa500f; opacity:0; transition:opacity 300ms; }
+.crm-row:hover .crm-row-arrow, .crm-row:focus-visible .crm-row-arrow { opacity:1; }
+@media (hover:none) { .crm-row-arrow { opacity:1; } }
+@media (prefers-reduced-motion:reduce) { .crm-row, .crm-row-icon, .crm-row-arrow { transition:none; } }

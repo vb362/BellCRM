@@ -1,0 +1,13 @@
+#crm-sources[hidden] { display:none !important; }
+#crm-sources { width:100%; padding-bottom:24px; color:#242421; font-size:14px; }
+.sources-table th:nth-child(1) { width:16%; }
+.sources-table th:nth-child(2) { width:16%; }
+.sources-table th:nth-child(3) { width:16%; }
+.sources-table th:nth-child(4) { width:40%; }
+.sources-table th:nth-child(5) { width:12%; }
+.sources-table tbody tr { border-bottom:1px solid #e7e6e2; }
+.sources-table td { padding-top:16px; padding-bottom:16px; }
+.source-id { font-weight:500; white-space:nowrap; }
+.source-muted { color:#97958d; }
+.source-url { overflow-wrap:anywhere; }
+#crm-sources button:focus-visible { outline:2px solid #b7cfdf; outline-offset:3px; }

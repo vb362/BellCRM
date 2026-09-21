@@ -19,7 +19,10 @@ Bellhaven CRM Cleaner compares facility information on the Ballhaven website wit
 
 ## Quick Start
 
-With Python 3.11+ installed, run these commands from the project folder (macOS or Linux):
+With Python 3.11+ installed : 
+1- Open your terminal 
+
+2- Copy, paste and run these commands in the terminal (macOS or Linux):
 
 ```sh
 python3 -m venv .venv
@@ -44,11 +47,9 @@ PY
 .venv/bin/python server.py
 ```
 
-Then open [localhost:8000](http://localhost:8000). Keep the terminal running. 
+Then open your browser with URL [localhost:8000](http://localhost:8000). Keep the terminal running. 
 
-The repository includes the prepared `data/start.sqlite` baseline for Test mode and the standalone card snapshot in `exports/`. Setup copies the baseline into a local demo database and initializes a separate empty production database. Existing working databases are preserved. If the baseline is unavailable, setup creates an empty demo database.
-
-## How to Use
+## How to Navigate Website 
 
 1. Choose **Test mode** to scan the website and compare records.
 2. Once the run finishes, open **Home** to review, approve, edit, or decline suggested changes.

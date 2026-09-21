@@ -128,7 +128,7 @@ class Component extends DCLogic {
         matchLine: 'Absent from website - No name or full-address match in the completed scrape',
         reason: 'No match on the website by facility name, or by street + city + state together. Absence from the scrape is not proof of closure or a change of ownership — marking it Inactive keeps the history and its revenue while taking it out of the active list.',
         noteValue: notes[c.id] != null ? notes[c.id] : this.defaultNote,
-        crmUrl: 'https://analyst-assessment-production.up.railway.app/crm/bh_otLzIlpPQ3qmR3xTQ8VjVQ/accounts/' + c.account,
+        crmUrl: 'https://analyst-assessment-production.up.railway.app/crm/YOUR_CRM_WORKSPACE/accounts/' + c.account,
         onNote: e => this.setState(s => ({ notes: { ...s.notes, [c.id]: e.target.value } })),
         open: isOpen,
         closed: !isOpen,

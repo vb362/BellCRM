@@ -172,7 +172,7 @@ class Component extends DCLogic {
         chowRule: 'An account is only preserved and replaced when it has revenue history and outstanding AR at the same time. ' + (blocked ? 'This one meets both, so it must not be re-parented.' : 'This one does not, so the parent can change directly.'),
         matchLine: 'Parent correction - Name and address match, CRM parent differs',
         reason: 'The name and address match a facility listed by Bellhaven, so this is likely an ownership change or an outdated parent assignment. Outstanding AR is ' + this.money(c.ar) + ', so the parent can move on this account instead of creating a replacement.',
-        crmUrl: 'https://analyst-assessment-production.up.railway.app/crm/bh_otLzIlpPQ3qmR3xTQ8VjVQ/accounts/' + c.account,
+        crmUrl: 'https://analyst-assessment-production.up.railway.app/crm/YOUR_CRM_WORKSPACE/accounts/' + c.account,
         open: isOpen,
         closed: !isOpen,
         border: isOpen ? '#d8d3c8' : '#e4e1da',

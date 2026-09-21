@@ -60,6 +60,12 @@ PY
 
 Then open your browser with URL [localhost:8000](http://localhost:8000). Keep the terminal running. 
 
+## Optional CRM API key
+
+Quick Start and Test mode work without an API key, including matching, local reviews, submissions, and Reset. To enable **View online CRM** links or Production mode, copy `.env.example` to `.env`, enter your own `BELLHAVEN_API_TOKEN`, and restart the server. Keep `.env` local; it is excluded from Git.
+
+With no key, external CRM links show **Local key required**. With a key, the local app constructs these links at runtime. The key is not built into the published HTML, JavaScript, or exported previews. External CRM URLs themselves contain the credential, so avoid sharing those URLs.
+
 ## How to Navigate Website 
 
 1. Choose **Test mode** to scan the website and compare records.

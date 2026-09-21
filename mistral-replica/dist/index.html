@@ -763,7 +763,7 @@ button { color:inherit; }
 (() =&gt; {
   const $ = id =&gt; document.getElementById(id);
   const escape = value =&gt; String(value ?? &#x27;&#x27;).replace(/[&amp;&lt;&gt;&quot;&#x27;]/g, char =&gt; ({&#x27;&amp;&#x27;:&#x27;&amp;amp;&#x27;,&#x27;&lt;&#x27;:&#x27;&amp;lt;&#x27;,&#x27;&gt;&#x27;:&#x27;&amp;gt;&#x27;,&#x27;&quot;&#x27;:&#x27;&amp;quot;&#x27;,&quot;&#x27;&quot;:&#x27;&amp;#39;&#x27;}[char]));
-  const onlineCrmBase = &#x27;https://analyst-assessment-production.up.railway.app/crm/bh_otLzIlpPQ3qmR3xTQ8VjVQ/accounts/&#x27;;
+  let onlineCrmBase = null;
   const fields = [[&#x27;name&#x27;,&#x27;Facility name&#x27;],[&#x27;street&#x27;,&#x27;Street&#x27;],[&#x27;city&#x27;,&#x27;City&#x27;],[&#x27;state&#x27;,&#x27;State&#x27;],[&#x27;zip&#x27;,&#x27;ZIP&#x27;],[&#x27;care&#x27;,&#x27;Care offerings&#x27;],[&#x27;parent&#x27;,&#x27;Parent&#x27;],[&#x27;phone&#x27;,&#x27;Phone&#x27;]];
   let requests = [], contacts = [], lastData = &#x27;&#x27;, busy = false;
   const columnMap={billing_street:&#x27;street&#x27;,billing_city:&#x27;city&#x27;,billing_state:&#x27;state&#x27;,billing_zip:&#x27;zip&#x27;,care_type:&#x27;care&#x27;,parent_name:&#x27;parent&#x27;};
@@ -784,9 +784,9 @@ button { color:inherit; }
       duplicates:e.accounts?.map(a=&gt;({id:a.account_id,data:displayRecord(a)}))};
   }
   function ingest(data) {
-    const signature=JSON.stringify([data.mode,data.production,data.proposals,data.accounts,data.contacts]);
+    const signature=JSON.stringify([data.mode,data.crm_link_base,data.production,data.proposals,data.accounts,data.contacts]);
     if(signature===lastData)return;
-    lastData=signature;contacts=data.contacts||[];state.mode=data.mode||&quot;test&quot;;state.production=data.production;
+    lastData=signature;onlineCrmBase=data.crm_link_base||null;contacts=data.contacts||[];state.mode=data.mode||&quot;test&quot;;state.production=data.production;
     // Automatic no-change matches are remembered for scans, but are not review requests.
     requests=data.proposals.filter(p=&gt;!p.decision?.automatic).map(adapt);state.decisions={};
     for(const r of requests){
@@ -1317,7 +1317,8 @@ button { color:inherit; }
     if (!id) return &#x27;&lt;span class=&quot;decisions-muted&quot;&gt;No CRM account&lt;/span&gt;&#x27;;
     // Accounts created in Test mode do not have an online page.
     if (id.startsWith(&#x27;LOCAL-&#x27;)) return `&lt;span class=&quot;decisions-muted&quot;&gt;${escape(label)} · No online CRM page&lt;/span&gt;`;
-    return `&lt;a class=&quot;decisions-crm-link&quot; href=&quot;${onlineCrmBase}${encodeURIComponent(id)}&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; aria-label=&quot;View online CRM record ${escape(id)}&quot;&gt;${escape(label)}&lt;/a&gt;`;
+    if (!onlineCrmBase) return `&lt;span class=&quot;decisions-muted&quot; title=&quot;Add your CRM API key to the local .env file and restart the server to enable online CRM links.&quot;&gt;${escape(label)} · Local key required&lt;/span&gt;`;
+    return `&lt;a class=&quot;decisions-crm-link&quot; href=&quot;${escape(onlineCrmBase+encodeURIComponent(id))}&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; aria-label=&quot;View online CRM record ${escape(id)}&quot;&gt;${escape(label)}&lt;/a&gt;`;
   }
   function crmViews(id) {
     return `&lt;br&gt;${crmLink(id,&#x27;View online CRM&#x27;)}`;

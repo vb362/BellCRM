@@ -8,13 +8,25 @@ import os
 from pathlib import Path
 import secrets
 import threading
-from urllib.parse import urlsplit
+from urllib.parse import quote, urlsplit
 
 from normalize_data import DATABASES, open_database
 from run_pipeline import start_pipeline, run_pipeline
 import review_service as review
 
 ROOT = Path(__file__).resolve().parent
+
+
+def local_crm_link_base():
+    """Build credential-bearing links only at runtime for the local browser.
+
+    This does not call the CRM API. Never write this value into static assets,
+    database snapshots, logs, or public exports.
+    """
+    token = os.environ.get('BELLHAVEN_API_TOKEN', '').strip()
+    if not token:
+        return None
+    return 'https://analyst-assessment-production.up.railway.app/crm/' + quote(token, safe='') + '/accounts/'
 
 
 def load_local_config(path=None):
@@ -53,6 +65,7 @@ class Application:
         result = review.read_state(self.database)
         result['mode'] = self.mode
         result['production'] = self.production.state() if self.production else None
+        result['crm_link_base'] = local_crm_link_base()
         return result
 
     def start(self):

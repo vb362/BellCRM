@@ -14,6 +14,11 @@ sys.path.insert(0, str(ROOT))
 from review_service import read_state
 
 
+def export_data(data):
+    """Allow only snapshot data; runtime link credentials must never be exported."""
+    return {key: data[key] for key in ('proposals', 'accounts', 'contacts')}
+
+
 def export_cards():
     with tempfile.TemporaryDirectory() as temporary:
         snapshot = Path(temporary) / 'design-snapshot.sqlite'
@@ -21,7 +26,7 @@ def export_cards():
             with sqlite3.connect(snapshot) as destination:
                 source.backup(destination)
         data = read_state(snapshot)
-    data = {key: data[key] for key in ('proposals', 'accounts', 'contacts')}
+    data = export_data(data)
     data['exported_at'] = datetime.now(timezone.utc).isoformat(timespec='seconds')
     data['mode'] = 'test'
     embedded = json.dumps(data, ensure_ascii=False).replace('<', '\\u003c')

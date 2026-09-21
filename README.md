@@ -19,8 +19,6 @@ Bellhaven CRM Cleaner compares facility information on the Ballhaven website wit
 
 ## Quick Start
 
-## Quick Start
-
 With Python 3.11+ installed:
 
 1. Download and unzip this project, or clone the repository.

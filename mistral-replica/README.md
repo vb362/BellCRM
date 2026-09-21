@@ -6,7 +6,7 @@ Start the connected Test mode app from the parent Bellhaven directory:
 .venv/bin/python server.py
 ```
 
-Follow the parent [README](../README.md) to install dependencies and initialize local databases first. Open **http://localhost:8000**. Choose Test mode to start the real pipeline and view Runs. Home, Decisions, Sources, counts, and account views use `data/demo.sqlite`. Approvals and rejections are saved as drafts; Submit applies approved changes and records history. Production mode requires an authorized API token and uses a separate local database. Reset and scheduling controls are currently unavailable.
+Follow the parent [README](../README.md) to install dependencies and initialize local databases first. Open **http://localhost:8000**. Choose Test mode to start the real pipeline and view Runs. Home, Decisions, Sources, counts, and account views use `data/demo.sqlite`. Approvals and rejections are saved as drafts; Submit applies approved changes and records history. Production mode requires an authorized API token and uses a separate local database. Settings can reset Test mode with a backup once active runs finish; production is never reset. The scheduling control is unavailable.
 
 See [WEB_APP.md](../WEB_APP.md) for the full flow and boundaries.
 

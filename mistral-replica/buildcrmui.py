@@ -87,7 +87,7 @@ for key in ['home', 'runs', 'sources', 'settings']:
     icon = icon.replace('sc-camel-view-box=', 'viewBox=').replace('stroke-width="1.7"', 'stroke-width="2"')
     icons.append(icon)
 new_rows = []
-welcome_icon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M14 9l3 3-3 3"/></svg>'
+welcome_icon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>'
 report_icon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H5v18h14V8l-5-5Z"/><path d="M14 3v5h5M8 12h8M8 16h5"/></svg>'
 for index, (label, icon) in enumerate(zip(['Welcome', 'Home', 'Runs', 'Decisions', 'Sources', 'Settings'], [welcome_icon, icons[0], icons[1], report_icon, icons[2], icons[3]])):
     row = home_row.replace('>Accueil<', '>' + label + '<')

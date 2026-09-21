@@ -1,17 +1,17 @@
-<!-- UI-only mode selection. Both cards open the existing sample review screen. -->
+<!-- Select the local test database or the live CRM workflow. -->
 <section id="crm-welcome" aria-label="Choose your mode">
   <div class="welcome-cards">
     <button class="welcome-card" type="button" data-mode="test"
             aria-labelledby="test-mode-title" aria-describedby="test-mode-description" aria-pressed="false">
       <img class="welcome-card-icon" src="{{ robot_icon }}" alt="" width="48" height="48">
       <span class="welcome-card-title" id="test-mode-title">Test mode</span>
-      <span class="welcome-card-description" id="test-mode-description">Explore the review flow with sample data.<br>Try changes without affecting your CRM.</span>
+      <span class="welcome-card-description" id="test-mode-description">Test mode does NOT use the CRM API. Review and apply changes only to your local test database.</span>
     </button>
     <button class="welcome-card" type="button" data-mode="production"
             aria-labelledby="production-mode-title" aria-describedby="production-mode-description" aria-pressed="false">
       <img class="welcome-card-icon" src="{{ robot_icon }}" alt="" width="48" height="48">
       <span class="welcome-card-title" id="production-mode-title">Production mode</span>
-      <span class="welcome-card-description" id="production-mode-description">Preview the production review flow.<br>See how changes are reviewed before approval.</span>
+      <span class="welcome-card-description" id="production-mode-description">Load the live CRM and review changes. Production mode sends approved changes through the API at the end, after confirmation.</span>
     </button>
   </div>
 </section>

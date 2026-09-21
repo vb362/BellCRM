@@ -71,6 +71,18 @@ class Application:
             self.worker.start()
             return run_id
 
+    def reset(self, baseline, production_database):
+        if self.mode != 'test' or self.production:
+            raise ValueError('Reset is available only in Test mode.')
+        with self.lock:
+            if self.worker and self.worker.is_alive():
+                raise ValueError('A run is active. Wait for it to finish before resetting Test mode.')
+            from reset_demo import reset_demo
+            backup = reset_demo(self.database, baseline, production_database)
+            result = self.state()
+            result['reset'] = {'backup_file': backup.name}
+            return result
+
 
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -151,6 +163,10 @@ class Handler(SimpleHTTPRequestHandler):
             if not self.authorized():
                 return self.send_json(401, {'error': 'Choose a mode first'})
             app = self.server.sessions[self.headers.get('X-Bellhaven-Session')]
+            if self.path == '/api/test/reset':
+                if body.get('confirm') is not True:
+                    raise ValueError('Confirm the reset before restoring Test mode.')
+                return self.send_json(200, app.reset(self.server.baseline_database, self.server.production_database))
             if self.path == '/api/runs':
                 if app.production:
                     app.production.refresh()
@@ -193,7 +209,7 @@ class Handler(SimpleHTTPRequestHandler):
             super().log_message(fmt, *args)
 
 
-def make_server(port=8000, database=None, production_database=None, production_client=None):
+def make_server(port=8000, database=None, production_database=None, production_client=None, baseline_database=None):
     server = ThreadingHTTPServer(('127.0.0.1', port), Handler)
     server.app = Application(database or DATABASES['demo'])
     server.sessions = {}
@@ -201,6 +217,7 @@ def make_server(port=8000, database=None, production_database=None, production_c
     server.production_app = None
     server.production_database = production_database or DATABASES['production']
     server.production_client = production_client
+    server.baseline_database = baseline_database or ROOT / 'data/start.sqlite'
     return server
 
 

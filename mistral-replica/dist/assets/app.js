@@ -1,6 +1,6 @@
 /* Same-origin mode-aware client. The server selects the database, never the page. */
 (() => {
-  let token = null, current = null, polling = false, refreshing = null;
+  let token = null, current = null, polling = false, refreshing = null, resetting = false;
   const notice = document.createElement('p');
   notice.id = 'app-error'; notice.setAttribute('role','alert');
   notice.style.cssText='padding:12px 16px;color:#9b342b;background:#fff0ed;border-radius:6px;display:none';
@@ -18,7 +18,7 @@
     document.getElementById('crm-content')?.contentWindow.postMessage({type:'crm-data',data},location.origin);
   }
   async function refresh() {
-    if(!token)return;
+    if(!token || resetting)return;
     if(refreshing)return refreshing;
     refreshing=request('/api/state').then(publish).finally(()=>{refreshing=null;});
     return refreshing;
@@ -31,17 +31,40 @@
     return session;
   }
   async function mutate(path,data) {
+    if(resetting)throw new Error('Test mode is resetting. Please wait.');
     // Finish any older read before publishing a newer transaction result.
     if(refreshing)await refreshing;
     const result=await request(path,data);publish(result);error('');return result;
   }
-  window.Bellhaven={select,refresh,mutate,request,error,get data(){return current;},get selected(){return !!token;}};
+  const resetButton=document.getElementById('settings-reset-button');
+  const resetHelp=document.getElementById('settings-reset-help');
+  const resetStatus=document.getElementById('settings-reset-status');
+  function resetControls() {
+    const active=current?.runs.some(run=>run.status==='running');
+    resetButton.disabled=resetting || current?.mode!=='test' || !!active;
+    resetButton.textContent=resetting?'Resetting…':'Reset';
+    resetHelp.textContent=current?.mode==='production'?'Reset is available only in Test mode. Production data is not changed.':active?'Wait for the active run to finish before resetting.':'Restore the original test data. A backup is saved before resetting.';
+  }
+  async function reset() {
+    if(resetting)return;
+    resetting=true;resetControls();resetStatus.textContent='';
+    try {
+      if(refreshing)await refreshing;
+      const data=await request('/api/test/reset',{confirm:true});
+      publish(data);error('');
+      // Reload the review frame to discard unsaved forms and cached selections.
+      const frame=document.getElementById('crm-content');
+      if(frame)frame.srcdoc=frame.srcdoc;
+      resetStatus.textContent='Test mode reset. Backup saved in data/backups/'+data.reset.backup_file+'. Open Runs and choose Run Scraper to start again.';
+    } finally {resetting=false;resetControls();}
+  }
+  document.addEventListener('crm-data',resetControls);
+  window.Bellhaven={select,refresh,mutate,request,error,reset,get data(){return current;},get selected(){return !!token;}};
   const production=document.querySelector('[data-mode="production"]');
   production.disabled=location.protocol==='file:';
-  document.getElementById('production-mode-description').textContent='Load the live CRM, review changes, then preview and confirm the API calls.';
-  document.getElementById('test-mode-description').textContent='Run the full pipeline and review changes in your local test database.';
-  document.getElementById('settings-reset-button').disabled=true;
-  document.querySelector('#crm-settings p').textContent='Reset is not connected yet. Your submitted test changes are saved.';
+  document.getElementById('production-mode-description').textContent='Load the live CRM and review changes. Production mode sends approved changes through the API at the end, after confirmation.';
+  document.getElementById('test-mode-description').textContent='Test mode does NOT use the CRM API. Review and apply changes only to your local test database.';
+  resetControls();
   const settings=document.createElement('div');settings.className='settings-card';
   settings.innerHTML='<div class="settings-card-copy"><h2>Daily schedule</h2><p>Not connected yet. Start a pipeline manually from Runs.</p></div>';
   document.getElementById('crm-settings').append(settings);

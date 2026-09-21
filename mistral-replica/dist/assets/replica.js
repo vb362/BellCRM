@@ -320,11 +320,17 @@
     document.dispatchEvent(new CustomEvent('crm-show-all-runs'));
     showView('runs');
   });
-  // UI preview only: both answers close the native dialog without resetting data.
+  // A reset requires an explicit Yes; Cancel and Escape leave test data intact.
   const resetDialog = document.getElementById('settings-reset-dialog');
   const resetButton = document.getElementById('settings-reset-button');
-  resetButton.addEventListener('click', () => resetDialog.showModal());
-  resetDialog.addEventListener('close', () => resetButton.focus({preventScroll:true}));
+  resetButton.addEventListener('click', () => {resetDialog.returnValue='';resetDialog.showModal();});
+  resetDialog.addEventListener('close', async () => {
+    if(resetDialog.returnValue==='yes') {
+      try {await window.Bellhaven.reset();}
+      catch(error) {window.Bellhaven.error(error.message);}
+    }
+    resetButton.focus({preventScroll:true});
+  });
   showView('welcome', false);
 
   // A visual replica has no authenticated Mistral account actions.

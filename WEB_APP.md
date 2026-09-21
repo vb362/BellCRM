@@ -20,7 +20,7 @@ Duplicate resolution previews all contacts retained on the survivor and requires
 ## Boundaries and implementation
 
 - Only `demo.sqlite` is used. `start.sqlite` and `production.sqlite` are untouched; no remote CRM writes occur. The scraper reads the assessment website.
-- Production, reset, and scheduling controls are unavailable until implemented.
+- Production requires a server-side API token and explicit submission confirmation. Settings can reset Test mode after active runs finish: it backs up the demo, restores the baseline, and clears test decisions/history in one transaction. Production and the baseline are protected. The scheduling control remains unavailable.
 - The server binds to `127.0.0.1` for local use. It is not a hosted or multi-user deployment.
 - `server.py` serves the existing HTML and its local endpoints. `review_service.py` handles saved decisions and transactions. `run_pipeline.py` remains the three-step runner.
 - API requests need the Test mode session. The server validates proposal versions, decision revisions, duplicate dependencies, and current account values and the saved contact set. Retrying a submitted decision does not apply it again.

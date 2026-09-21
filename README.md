@@ -79,4 +79,6 @@ See the [full matching rules](MATCHING_RULES.md) for details.
 | **Runs** | Start a new scan and see its progress, results, or errors. View past runs here too. |
 | **Decisions** | View draft and submitted decisions, including what changed before and after. |
 | **Sources** | See the facility pages used for the latest completed website scan and when they were collected. |
-| **Settings** | Contains demo reset and daily scheduling controls. These are not connected yet. |
+| **Settings** | Reset Test mode to the original data with a backup saved first. The scheduling control is not connected. |
+
+To reset a test, open **Settings → Reset → Yes** in Test mode after any run finishes. This restores the baseline and clears test edits, decisions, and run history. A copy of the previous demo is saved in `data/backups/`; production is unchanged. Open **Runs → Run Scraper** to generate proposals again.

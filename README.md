@@ -24,6 +24,15 @@ With Python 3.11+ installed:
 1. Download and unzip this project, or clone the repository.
 2. Open your terminal.
 3. Navigate to the project folder using `cd /path/to/project`.
+
+   For example, if you extracted the GitHub ZIP in your Downloads folder:
+
+   ```sh
+   cd ~/Downloads/Bellhaven-main
+   ```
+
+   If you extracted it elsewhere, type `cd ` (with a space), drag the extracted folder into Terminal, then press Enter.
+
 4. Copy, paste and run the commands below (macOS or Linux):
 
 ```sh

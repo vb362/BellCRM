@@ -56,35 +56,6 @@ The repository includes the prepared `data/start.sqlite` baseline for Test mode 
 
 <!-- Add screenshots alongside the steps where useful. -->
 
-## Production mode
-
-The server automatically loads `BELLHAVEN_API_TOKEN` from the project's local `.env` file at startup. This file is excluded from Git. A token already set in the server's environment takes precedence. To set a temporary environment override in macOS's default zsh, enter these lines one at a time (the token is hidden while typing):
-
-```sh
-read -s "BELLHAVEN_API_TOKEN?API token: "
-printf '\n'
-export BELLHAVEN_API_TOKEN
-.venv/bin/python server.py
-```
-
-The token stays in the server process; the API preview redacts authentication. Restart an existing server after updating the code or token. The application listens on localhost only.
-
-1. Select **Production mode**. It reads all CRM accounts and contacts into the separate `data/production.sqlite` mirror, then runs the same website comparison pipeline. Its schema upgrades automatically with a backup on first use.
-2. Review and stage decisions as usual. This does not send CRM writes.
-3. Open **Review and submit**. The app refreshes the CRM, checks the decisions, and saves the exact ordered methods, URLs, and JSON bodies. New-account references explicitly point to the call that will return their ID.
-4. Click **Confirm and run API calls**. The server executes that saved plan, GETs each changed record to verify it, and records the actual CRM IDs and timestamps locally. Changes to the reviewed decisions or CRM since preview block a fresh submission.
-5. Open **Decisions** for the confirmed before/after history. Test mode still applies only local changes.
-
-If a call fails, the remaining calls stop. Reopen **View submission** to inspect progress and explicitly resume. Verified calls are skipped; known successful writes are read again, not resent. An uncertain creation is never automatically repeated: inspect the CRM, enter the newly created record's ID in the saved submission, and resume verification. If its outcome cannot be established, leave the submission paused for reconciliation. An uncertain PATCH is also read back without automatic replay; a mismatch needs manual reconciliation. A plan can be discarded only when it has no successful or uncertain writes.
-
-The CRM does not document transactions or conditional updates. A multi-call submission can partially succeed, and a concurrent CRM edit can still occur between a check and a write. The executor does not promise remote rollback or exactly-once delivery. The local decision history is finalized only after the entire saved plan verifies; partial progress is retained separately in `production_requests`.
-
-The implementation is in [production_api.py](production_api.py), mode/session routing in [server.py](server.py), and the verified API contract in [API.md](API.md). Production credentials are required to activate the live mode. Automated tests use a simulated CRM and temporary databases:
-
-```sh
-.venv/bin/python -m unittest discover -s tests -q
-```
-
 ## Matching Rules
 
 See the [full matching rules](MATCHING_RULES.md) for details.

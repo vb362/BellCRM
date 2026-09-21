@@ -73,7 +73,6 @@ Then open your browser with URL [localhost:8000](http://localhost:8000). Keep th
 
 The schedule is in [`.github/workflows/daily-pipeline.yml`](.github/workflows/daily-pipeline.yml): `0 8 * * *` with timezone `America/New_York`, daily at **8:00 a.m. New York time**, including daylight-saving changes. It runs `run_pipeline.py --database production` to scrape, normalize, and generate proposals for review; it does not submit CRM changes.
 
-Re-runs reuse the persistent production database and skip already submitted decisions, including rejections. To enable the schedule, configure a self-hosted runner labelled `bellhaven` and set `BELLHAVEN_PROJECT_DIR` to the installed project path. See [setup details](PIPELINE.md#daily-schedule). GitHub may delay scheduled starts.
 
 ## Matching Rules
 

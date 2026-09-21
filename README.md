@@ -19,11 +19,14 @@ Bellhaven CRM Cleaner compares facility information on the Ballhaven website wit
 
 ## Quick Start
 
-With Python 3.11+ installed : 
+## Quick Start
 
-1- Open your terminal 
+With Python 3.11+ installed:
 
-2- Copy, paste and run these commands in the terminal (macOS or Linux):
+1. Download and unzip this project, or clone the repository.
+2. Open your terminal.
+3. Navigate to the project folder using `cd /path/to/project`.
+4. Copy, paste and run the commands below (macOS or Linux):
 
 ```sh
 python3 -m venv .venv

@@ -6,6 +6,7 @@ Find and review differences between Bellhaven’s website and Clipboard's CRM re
   <a href="#project-description">Project Description</a> ·
   <a href="#quick-start">Quick Start</a> ·
   <a href="#how-to-use">How to Use</a> ·
+  <a href="#daily-production-run">Daily Production Run</a> ·
   <a href="#matching-rules">Matching Rules</a> ·
   <a href="#sidebar-sections">Sidebar Sections</a>
 </p>
@@ -55,6 +56,12 @@ The repository includes the prepared `data/start.sqlite` baseline for Test mode 
 4. Open **Decisions** to see your saved choices and change history.
 
 <!-- Add screenshots alongside the steps where useful. -->
+
+## Daily Production Run
+
+The schedule is in [`.github/workflows/daily-pipeline.yml`](.github/workflows/daily-pipeline.yml): `0 8 * * *` with timezone `America/New_York`, daily at **8:00 a.m. New York time**, including daylight-saving changes. It runs `run_pipeline.py --database production` to scrape, normalize, and generate proposals for review; it does not submit CRM changes.
+
+Re-runs reuse the persistent production database and skip already submitted decisions, including rejections. To enable the schedule, configure a self-hosted runner labelled `bellhaven` and set `BELLHAVEN_PROJECT_DIR` to the installed project path. See [setup details](PIPELINE.md#daily-schedule). GitHub may delay scheduled starts.
 
 ## Matching Rules
 

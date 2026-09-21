@@ -37,7 +37,9 @@ The working databases must already have schema version 3. The runner does not si
 ## Daily schedule
 
 The included [GitHub Actions workflow](.github/workflows/daily-pipeline.yml) runs
-the whole pipeline every day at **03:17 UTC** (`17 3 * * *`). It also supports
+the production pipeline every day at **08:00 America/New_York** (`0 8 * * *`
+with `timezone: America/New_York`), automatically following daylight-saving
+changes. It explicitly runs `--database production`. It also supports
 manual runs through **Actions → Daily Bellhaven pipeline → Run workflow**.
 GitHub schedules are best effort; the start time can be delayed. See the
 [GitHub schedule documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#onschedule).
@@ -48,13 +50,13 @@ To enable it later:
    `bellhaven`, on the machine holding the application's working database.
 2. Set the repository Actions variable `BELLHAVEN_PROJECT_DIR` to the absolute
    path of the installed Bellhaven project, outside the runner's temporary checkout.
-   Set `BELLHAVEN_DATABASE` to `demo` or `production` (default: `production`).
-   Choose the same database used for human review in the web app.
+   The workflow always uses `data/production.sqlite`, the same database used
+   for Production mode review in the web app.
 3. Prepare that installation once: Python 3.11 or newer, a `.venv` containing
-   `requirements.txt`, and an initialized schema-version-3 database with CRM accounts.
+   `requirements.txt`, and an initialized production database with CRM accounts.
    Keep the runner online and give its user write access to the database directory.
 4. Commit the workflow to the repository's default branch. This configuration
-   has only been added as a file; no runner or live schedule has been installed.
+   is supplied as a workflow file; a configured, online runner is required to execute it.
 
 The workflow runs the code already installed at `BELLHAVEN_PROJECT_DIR`; deploy
 code updates there separately while keeping `data/` intact. It deliberately does
@@ -75,10 +77,11 @@ Alternatively, install this with `crontab -e` on the machine holding the databas
 replacing `/absolute/path/to/Bellhaven` with the actual project path:
 
 ```cron
-17 3 * * * cd /absolute/path/to/Bellhaven && .venv/bin/python -u run_pipeline.py --database production >> pipeline.log 2>&1
+0 8 * * * cd /absolute/path/to/Bellhaven && .venv/bin/python -u run_pipeline.py --database production >> pipeline.log 2>&1
 ```
 
-Quote the path if it contains spaces. Cron uses the machine's configured timezone.
+Quote the path if it contains spaces. This cron alternative requires the machine's
+timezone to be `America/New_York` so it follows daylight-saving changes.
 Choose either cron or GitHub Actions so there is only one daily scheduler.
 
 ## Verification

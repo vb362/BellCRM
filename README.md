@@ -20,6 +20,7 @@ Bellhaven CRM Cleaner compares facility information on the Ballhaven website wit
 ## Quick Start
 
 With Python 3.11+ installed : 
+
 1- Open your terminal 
 
 2- Copy, paste and run these commands in the terminal (macOS or Linux):
